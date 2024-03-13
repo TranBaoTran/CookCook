@@ -54,8 +54,8 @@ class Slime(pygame.sprite.Sprite):
         # number of jump sprites
         self.animation_jump_change_frame = math.ceil(globalvariable.FPS / self.animation_jump_step)
         self.loadImage()
-        self.width = 128 * scale
-        self.height = 128 * scale
+        self.width = 64 * scale
+        self.height = 64 * scale
 
     def loadImage(self):
         # stand

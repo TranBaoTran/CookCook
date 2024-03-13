@@ -3,7 +3,7 @@ import pygame
 import globalvariable
 import slime
 
-SCREEN_COLOR = (0, 0, 0)
+SCREEN_COLOR = (255, 255, 255)
 win = pygame.display.set_mode((globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT))
 pygame.display.set_caption("SlimeGame")
 
@@ -16,7 +16,7 @@ def redrawWindow(screen, player):
 
 def main():
     run = True
-    s = slime.Slime(200, 200, "Blue_Slime", 1)
+    s = slime.Slime(200, 200, "Red_Slime", 1)
     clock = pygame.time.Clock()
 
     while run:

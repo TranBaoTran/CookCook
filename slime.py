@@ -66,7 +66,7 @@ class Slime(pygame.sprite.Sprite):
             self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image(x, 128, 128, self.scale, (0, 0, 0)))
             self.animation_walk_left_list.append(
                 pygame.transform.flip(self.sprite_sheet_walk.get_image(x, 128, 128, self.scale, (0, 0, 0)), True,
-                                      False))
+                                      False).convert_alpha())
         # jump
         for x in range(self.animation_jump_step):
             self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, self.scale, (0, 0, 0)))

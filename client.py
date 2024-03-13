@@ -2,12 +2,13 @@ import pygame
 import math
 from pygame.locals import *
 
-import slime
+import slimesheet
 
-DEFAULT_SCREEN_WIDTH = 1000
-DEFAULT_SCREEN_HEIGHT = 750
+DEFAULT_SCREEN_WIDTH = 960
+DEFAULT_SCREEN_HEIGHT = 640
 SCREEN_WIDTH = DEFAULT_SCREEN_WIDTH
 SCREEN_HEIGHT = DEFAULT_SCREEN_HEIGHT
+FPS = 36
 SCREEN_COLOR = (0, 0, 0)
 CHARACTER_HEIGHT = 30
 BLOCK_HEIGHT = 50
@@ -39,41 +40,63 @@ class Player(pygame.sprite.Sprite):
         self.right = False
         self.walkCount = 0
         self.stand_frame = 0
-        self.stand = 0
+        self.jump_frame = 0
+        # stand sprite
         self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()
-        self.sprite_sheet_stand = slime.SpriteSheet(self.sprite_sheet_stand_img)
+        self.sprite_sheet_stand = slimesheet.SpriteSheet(self.sprite_sheet_stand_img)
         self.animation_stand_list = []
+        # walk sprite
         self.sprite_sheet_walk_img = pygame.image.load(self.WALKING_IMG).convert_alpha()
-        self.sprite_sheet_walk = slime.SpriteSheet(self.sprite_sheet_walk_img)
+        self.sprite_sheet_walk = slimesheet.SpriteSheet(self.sprite_sheet_walk_img)
         self.animation_walk_left_list = []
         self.animation_walk_right_list = []
+        # jump sprite
+        self.sprite_sheet_jump_img = pygame.image.load(self.JUMPING_IMG).convert_alpha()
+        self.sprite_sheet_jump = slimesheet.SpriteSheet(self.sprite_sheet_jump_img)
+        self.animation_jump_list = []
+        # number of normal sprites
         self.animation_step = 8
+        self.animation_change_frame = math.ceil(FPS / self.animation_step)
+        # number of jump sprites
+        self.animation_jump_step = 13
+        self.animation_jump_change_frame = math.ceil(FPS / self.animation_jump_step)
         self.loadImage()
 
     def loadImage(self):
+        # stand
         for x in range(self.animation_step):
             self.animation_stand_list.append(self.sprite_sheet_stand.get_image(x, 128, 128, 1, (0, 0, 0)))
+        # walk
         for x in range(self.animation_step):
             self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image(x, 128, 128, 1, (0, 0, 0)))
             self.animation_walk_left_list.append(
                 pygame.transform.flip(self.sprite_sheet_walk.get_image(x, 128, 128, 1, (0, 0, 0)), True, False))
+        # jump
+        for x in range(self.animation_jump_step):
+            self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, 1, (0, 0, 0)))
 
     def draw(self, win):
-        if self.walkCount + 1 >= 40:
+        if self.walkCount + 1 >= FPS:
             self.walkCount = 0
-        if self.left:
-            win.blit(self.animation_walk_left_list[self.walkCount // 5], (self.x, self.y))
+
+        if self.stand_frame + 1 >= FPS:
+            self.stand_frame = 0
+
+        if self.isJump:
+            win.blit(self.animation_jump_list[self.jump_frame // self.animation_jump_change_frame], (self.x, self.y))
+            self.jump_frame += 1
+            self.stand_frame = 0
+        elif self.left:
+            win.blit(self.animation_walk_left_list[self.walkCount // self.animation_change_frame], (self.x, self.y))
             self.walkCount += 1
+            self.stand_frame = 0
         elif self.right:
-            win.blit(self.animation_walk_right_list[self.walkCount // 5], (self.x, self.y))
+            win.blit(self.animation_walk_right_list[self.walkCount // self.animation_change_frame], (self.x, self.y))
             self.walkCount += 1
+            self.stand_frame = 0
         else:
-            win.blit(self.animation_stand_list[self.stand_frame], (self.x, self.y))
-            if self.stand % 5 == 0:
-                self.stand_frame += 1
-            if self.stand_frame >= len(self.animation_stand_list):
-                self.stand_frame = 0
-                self.stand = 0
+            win.blit(self.animation_stand_list[self.stand_frame // self.animation_change_frame], (self.x, self.y))
+            self.stand_frame += 1
         pygame.draw.rect(win, self.color, self.rect)
 
     def move(self):
@@ -93,7 +116,7 @@ class Player(pygame.sprite.Sprite):
             self.right = False
             self.left = False
             self.walkCount = 0
-            self.stand += 1
+
         if not self.isJump:
             if keys[pygame.K_UP] and self.y > self.vel:
                 self.y -= self.vel
@@ -117,6 +140,7 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.isJump = False
                 self.jumpCount = 10
+                self.jump_frame = 0
         self.rect = (self.x, self.y, self.width, self.height)
 
 
@@ -132,7 +156,7 @@ def main():
     clock = pygame.time.Clock()
 
     while run:
-        clock.tick(40)
+        clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False

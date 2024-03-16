@@ -13,7 +13,18 @@ class SpriteSheet:
         image.blit(self.sheet, (0, 0), ((frame * width), 0, width, height))
         image = pygame.transform.scale(image, (width * scale, height * scale))
         image.set_colorkey(colour)
-        return image
+        bounding_rect = image.get_bounding_rect()
+        content_image = image.subsurface(bounding_rect)
+        return content_image
+
+    def get_image_normal(self, frame, width, height, scale, colour):
+        image = pygame.Surface((width, height)).convert_alpha()
+        image.blit(self.sheet, (0, 0), ((frame * width), 0, width, height))
+        image = pygame.transform.scale(image, (width * scale, height * scale))
+        image.set_colorkey(colour)
+        bounding_rect = image.get_bounding_rect()
+        content_image = image.subsurface((34*scale, 94*scale, 54*scale, 34*scale))
+        return content_image
 
 
 class Slime(pygame.sprite.Sprite):
@@ -54,19 +65,19 @@ class Slime(pygame.sprite.Sprite):
         # number of jump sprites
         self.animation_jump_change_frame = math.ceil(globalvariable.FPS / self.animation_jump_step)
         self.loadImage()
-        self.width = 64 * scale
-        self.height = 64 * scale
+        self.rect = self.animation_stand_list[0].get_rect()
+        self.width = self.animation_stand_list[0].get_width()
+        self.height = self.animation_stand_list[0].get_height()
 
     def loadImage(self):
         # stand
         for x in range(self.animation_step):
-            self.animation_stand_list.append(self.sprite_sheet_stand.get_image(x, 128, 128, self.scale, (0, 0, 0)))
+            self.animation_stand_list.append(self.sprite_sheet_stand.get_image_normal(x, 128, 128, self.scale, (0, 0, 0)))
         # walk
         for x in range(self.animation_step):
-            self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image(x, 128, 128, self.scale, (0, 0, 0)))
+            self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image_normal(x, 128, 128, self.scale, (0, 0, 0)))
             self.animation_walk_left_list.append(
-                pygame.transform.flip(self.sprite_sheet_walk.get_image(x, 128, 128, self.scale, (0, 0, 0)), True,
-                                      False).convert_alpha())
+                pygame.transform.flip(self.animation_walk_right_list[x], True, False).convert_alpha())
         # jump
         for x in range(self.animation_jump_step):
             self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, self.scale, (0, 0, 0)))

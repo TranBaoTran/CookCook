@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="31">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="96" columns="12">
-  <image source="../../Documents/Python MNM/DA/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png" width="384" height="256"/>
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png" width="384" height="256"/>
  </tileset>
  <tileset firstgid="97" name="Ladder1" tilewidth="23" tileheight="32" tilecount="1" columns="1">
-  <image source="../../Documents/Python MNM/DA/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder1.png" width="23" height="32"/>
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder1.png" width="23" height="32"/>
  </tileset>
  <tileset firstgid="98" name="Tree4" tilewidth="175" tileheight="190" tilecount="1" columns="1">
-  <image source="../../Documents/Python MNM/DA/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="175" height="190"/>
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="175" height="190"/>
  </tileset>
  <tileset firstgid="99" name="2" tilewidth="72" tileheight="72" tilecount="1" columns="1">
-  <image source="../../Documents/Python MNM/DA/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/2.png" width="72" height="72"/>
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/2.png" width="72" height="72"/>
  </tileset>
  <tileset firstgid="100" name="1" tilewidth="45" tileheight="32" tilecount="1" columns="1">
   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png" width="45" height="32"/>
@@ -43,7 +43,7 @@
   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="192" height="192"/>
  </tileset>
  <imagelayer id="3" name="BG">
-  <image source="../../Documents/Python MNM/DA/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png" width="960" height="640"/>
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png" width="960" height="640"/>
  </imagelayer>
  <layer id="1" name="background" width="30" height="20">
   <data encoding="base64" compression="zlib">

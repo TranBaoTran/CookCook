@@ -5,10 +5,209 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2eaf3889-e115-401a-9ada-b16254ce3ec9" name="Changes" comment="complete animation and optimize">
-      <change afterPath="$PROJECT_DIR$/timer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_33.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_34.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_37.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_38.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_41.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_42.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_43.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_44.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_45.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_47.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_49.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_51.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_52.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_53.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_54.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_55.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_56.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_59.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_61.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_62.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_63.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_65.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_66.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_67.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_68.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_69.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_70.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_71.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_72.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_73.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_74.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_75.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_76.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_77.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_78.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_79.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_81.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_82.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_83.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_84.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_85.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_86.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_87.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_88.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_89.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_90.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_91.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_92.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_93.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_94.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_95.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/1 Tiles/Tile_96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/Background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Night/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Night/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Night/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Night/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Night/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Overlay_illumination.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/2_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/4_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fence/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Leaf/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Leaf/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Leaf/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Leaf/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Leaf/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Leaf/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Garbage_Can1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Garbage_Can2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ramp1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ramp2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Rapm3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Skateboard1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Skateboard2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Skateboard3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Skateboard4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/4 Animated objects/Card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/4 Animated objects/Chest_open.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/4 Animated objects/Fountain.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/4 Animated objects/Money.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/4 Animated objects/Skateboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Coupon by craftpix.pdf.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Coupon by craftpix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Font.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/PSD/Background.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/PSD/Objects.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/PSD/Tiles.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/license.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CookCook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CookCook.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slime.py" beforeDir="false" afterPath="$PROJECT_DIR$/slime.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,30 +224,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2bwUSgmhhnGj0OqvYRXi2asoYHf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.client.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.slime.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/asset/img" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sakai\PycharmProjects\CookCook\asset\img" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="client" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CookCook" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -68,9 +266,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="load_map" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CookCook" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/load_map.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CookCook" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -92,7 +310,6 @@
     </configuration>
     <configuration name="slime" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CookCook" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -114,8 +331,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.load_map" />
         <item itemvalue="Python.slime" />
-        <item itemvalue="Python.client" />
       </list>
     </recent_temporary>
   </component>
@@ -177,6 +394,17 @@
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first base" />

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="48">
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="96" columns="12">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="97" name="Ladder1" tilewidth="23" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder1.png" width="23" height="32"/>
+ </tileset>
+ <tileset firstgid="98" name="Tree4" tilewidth="175" tileheight="190" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="99" name="2" tilewidth="72" tileheight="72" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/2.png" width="72" height="72"/>
+ </tileset>
+ <tileset firstgid="100" name="1" tilewidth="45" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png" width="45" height="32"/>
+ </tileset>
+ <tileset firstgid="101" name="10" tilewidth="10" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/10.png" width="10" height="32"/>
+ </tileset>
+ <tileset firstgid="102" name="14" tilewidth="40" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/14.png" width="40" height="32"/>
+ </tileset>
+ <tileset firstgid="103" name="16" tilewidth="22" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/16.png" width="22" height="32"/>
+ </tileset>
+ <tileset firstgid="104" name="19" tilewidth="43" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/19.png" width="43" height="32"/>
+ </tileset>
+ <tileset firstgid="105" name="2" tilewidth="22" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/2.png" width="22" height="32"/>
+ </tileset>
+ <tileset firstgid="106" name="3" tilewidth="27" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/3.png" width="27" height="32"/>
+ </tileset>
+ <tileset firstgid="107" name="4" tilewidth="39" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/4.png" width="39" height="32"/>
+ </tileset>
+ <tileset firstgid="108" name="Box" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Box.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="109" name="Tree4" tilewidth="32" tileheight="32" tilecount="36" columns="6">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="192" height="192"/>
+ </tileset>
+ <imagelayer id="3" name="BG">
+  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png" width="960" height="640"/>
+ </imagelayer>
+ <layer id="1" name="background" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlNsKwjAMhuPcnWC98QEUyrzwwObNfBjf/zVsWMJi6WI6D0Pxh491G+mfpiEAf71Ks0BBzD/ohWwCVWBljK8hP9eaPEpiJ94vgaNxn5byZf+zMe4XhTX91vPvA2uB9f6l8PwN3NeAvzWJf5acDtD115Q6TeyfI6zZmLvLEc+rd89FqS10s8kTmuQsfSZH9HTQz0Wf2FPO7jIit2+5z3zku6Q1PhcEe7iEL3sXoNci7mvpqeEU3yG0u2hpP6/EVyN9mSFdH3hK3xtytQsF
+  </data>
+ </layer>
+ <layer id="5" name="midground" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1EkOgkAQhWEWrvUAXsALcCMVHOIU53mIU+JwZf9KWBBilKKhYyIv+TZFdxWQBsfJk0Z8eKgp97UDaaaZYI/2vvP8TlpoGPaof7mexTm1EdP38ikddNFDH4MMZ4UzxAhjTDC1MHOGORZYYoW1hbkbbLHDHgeDXnLGvZhrjzjhjAuuylmFNzX5TuP8m2+444EnqsrZkjJKkZqLSoJevmJtMRCt/UPkOd0QyQt+nBfo
+  </data>
+ </layer>
+ <layer id="4" name="object" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjILBCRJH7R0Fo2AUDFEAAOd0ASQ=
+  </data>
+ </layer>
+ <objectgroup id="6" name="trigger">
+  <object id="1" name="ground" x="-0.450292" y="480.842" width="128.45" height="31.1579"/>
+  <object id="2" name="ground" x="128.333" y="511.667" width="31.1111" height="32.7778"/>
+  <object id="3" name="ground" x="159.444" y="544.444" width="192.222" height="32.2222"/>
+  <object id="6" name="ground" x="352.222" y="576.111" width="63.3333" height="31.6667"/>
+  <object id="7" name="ground" x="448.333" y="543.889" width="31.1111" height="31.1111"/>
+  <object id="8" x="236.111" y="656.111" width="1.11111"/>
+  <object id="9" name="ground" x="512.222" y="511.667" width="31.6667" height="32.2222"/>
+  <object id="10" name="ground" x="576.111" y="479.444" width="31.6667" height="31.6667"/>
+  <object id="12" name="ground" x="607.778" y="447.222" width="32.7778" height="33.3333"/>
+  <object id="13" name="ground" x="640" y="416.111" width="95" height="32.2222"/>
+  <object id="17" name="ground" x="703.889" y="447.778" width="31.1111" height="41.1111"/>
+  <object id="19" name="ground" x="735.556" y="480" width="63.8889" height="34.4444"/>
+  <object id="20" name="ground" x="799.444" y="511.667" width="65" height="28.8889"/>
+  <object id="21" name="ground" x="864.444" y="479.444" width="95" height="35"/>
+  <object id="22" name="ground" x="32.5" y="287.5" width="159.5" height="32.5"/>
+  <object id="23" name="ground" x="256.5" y="319.5" width="95.5" height="32"/>
+  <object id="24" name="ground" x="384" y="351" width="31.5" height="33.5"/>
+  <object id="25" name="ground" x="799.5" y="383.5" width="64.5" height="32.5"/>
+  <object id="27" name="ground" x="736.5" y="287.5" width="96" height="32.5"/>
+  <object id="28" name="ground" x="853.5" y="288" width="43" height="32.5"/>
+  <object id="30" name="ground" x="575.5" y="287.5" width="96.5" height="33"/>
+  <object id="31" name="ground" x="448" y="224" width="64" height="31"/>
+  <object id="34" name="ground" x="192" y="128" width="127.5" height="32"/>
+  <object id="35" name="ground" x="223.5" y="159.5" width="160" height="32.5"/>
+  <object id="36" name="ground" x="608" y="127.5" width="286" height="32"/>
+  <object id="38" name="ground" x="640" y="95.5" width="97" height="33.5"/>
+  <object id="39" name="ground" x="736.5" y="63.5" width="127.5" height="33.5"/>
+  <object id="40" name="ladder" x="833" y="286.5" width="20.5" height="97">
+   <properties>
+    <property name="ladder" value="yes"/>
+   </properties>
+  </object>
+  <object id="43" name="ground" x="393" y="607" width="23" height="36"/>
+  <object id="45" name="ground" x="576" y="510.5" width="32" height="98"/>
+  <object id="46" name="ground" x="608" y="608.5" width="32" height="32.5"/>
+ </objectgroup>
+</map>

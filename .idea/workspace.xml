@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2eaf3889-e115-401a-9ada-b16254ce3ec9" name="Changes" comment="complete animation and optimize">
-      <change afterPath="$PROJECT_DIR$/timer.py" afterDir="false" />
+    <list default="true" id="2eaf3889-e115-401a-9ada-b16254ce3ec9" name="Changes" comment="map_test vs1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slime.py" beforeDir="false" afterPath="$PROJECT_DIR$/slime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/16.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/19.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/10.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Box.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Box.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/4.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,30 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2bwUSgmhhnGj0OqvYRXi2asoYHf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.client.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.slime.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
-  }
-}</component>
   <component name="RunManager" selected="Python.main">
     <configuration name="client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CookCook" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -70,7 +65,6 @@
     </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CookCook" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -92,7 +86,6 @@
     </configuration>
     <configuration name="slime" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CookCook" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -175,13 +168,32 @@
       <option name="project" value="LOCAL" />
       <updated>1710310474394</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="map_test vs1">
+      <created>1710737947186</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710737947186</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first base" />
     <MESSAGE value="try animation" />
     <MESSAGE value="complete animation and optimize" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete animation and optimize" />
+    <MESSAGE value="map_test vs1" />
+    <option name="LAST_COMMIT_MESSAGE" value="map_test vs1" />
   </component>
 </project>

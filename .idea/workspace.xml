@@ -5,6 +5,314 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2eaf3889-e115-401a-9ada-b16254ce3ec9" name="Changes" comment="map_test vs2">
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_101.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_102.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_103.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_104.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_105.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_106.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_107.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_108.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_109.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_110.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_111.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_112.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_113.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_114.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_115.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_116.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_117.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_118.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_119.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_120.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_121.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_122.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_123.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_124.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_125.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_126.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_127.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_129.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_130.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_131.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_132.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_133.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_134.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_135.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_136.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_137.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_138.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_139.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_140.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_141.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_142.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_143.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_33.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_34.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_37.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_38.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_41.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_42.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_43.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_44.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_45.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_47.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_49.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_51.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_52.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_53.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_54.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_55.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_56.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_59.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_61.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_62.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_63.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_65.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_66.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_67.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_68.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_69.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_70.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_71.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_72.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_73.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_74.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_75.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_76.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_77.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_78.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_79.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_81.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_82.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_83.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_84.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_85.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_86.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_87.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_88.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_89.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_90.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_91.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_92.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_93.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_94.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_95.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_97.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_98.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tile_99.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Bushes/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Bushes/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Bushes/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Bushes/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Bushes/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Bushes/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Grass/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Houses/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Houses/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Houses/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Houses/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Houses/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Houses/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Other/Cave_enter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Other/Ship1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Other/Ship2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Other/Ship3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Rocks/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Rocks/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Rocks/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Rocks/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Rocks/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Rocks/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Ruins/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Ruins/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Ruins/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Ruins/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Ruins/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Trees/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/Dot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/Star1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/Star2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/Stars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/circle1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/circle2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/circle3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/circle4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/3 UI/circle5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/4 Fog/Fog_tiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/e8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/r8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/5 Shadows/s8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/Font.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/License.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/PSD/Objects.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/PSD/Tiles.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/COUPON.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/COUPON.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/License.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/1.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/2.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/3.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/4.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/5.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/6.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/7.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/PSD/8.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_1/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_2/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_3/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_3/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_3/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_3/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_3/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_3/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_4/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_4/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_4/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_4/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_4/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_4/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_6/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_6/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_6/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_6/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_6/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_7/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_7/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_7/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_7/origbig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_8/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_8/orig.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_8/origbig.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map01.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map01.tmx" afterDir="false" />
     </list>
@@ -180,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710749717884</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="map_test vs2">
+      <created>1710751481718</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710751481718</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

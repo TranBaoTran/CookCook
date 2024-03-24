@@ -44,9 +44,9 @@ class Slime(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.scale = scale
-        self.STANDING_IMG = "asset/img/character/" + name + "/Idle.png"
-        self.WALKING_IMG = "asset/img/character/" + name + "/walk.png"
-        self.JUMPING_IMG = "asset/img/character/" + name + "/Jump.png"
+        self.STANDING_IMG = "asset/img/character.py/" + name + "/Idle.png"
+        self.WALKING_IMG = "asset/img/character.py/" + name + "/walk.png"
+        self.JUMPING_IMG = "asset/img/character.py/" + name + "/Jump.png"
         # stand sprite
         self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()
         self.sprite_sheet_stand = SpriteSheet(self.sprite_sheet_stand_img)
@@ -82,6 +82,9 @@ class Slime(pygame.sprite.Sprite):
         for x in range(self.animation_jump_step):
             self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, self.scale, (0, 0, 0)))
 
+    def gravity(self):
+        self.y += 10
+
     def draw(self, win):
         if self.walkCount + 1 >= globalvariable.FPS:
             self.walkCount = 0
@@ -106,6 +109,7 @@ class Slime(pygame.sprite.Sprite):
             self.stand_frame += 1
 
     def move(self):
+        self.gravity()
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_LEFT] and self.x > self.vel:

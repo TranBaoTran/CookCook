@@ -11,15 +11,19 @@ class GameTime:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.seconds = 0
-        self.minutes = 0
-        self.count = 0
+        self.reset()
         self.timer_surface = None
+        self.timer_text = f"{0:02d}:{0:02d}"
 
     @classmethod
     def initialize_font(cls):
         if cls.font is None:
             cls.font = pygame.font.Font(cls.font_path, 13)
+
+    def reset(self):
+        self.seconds = 0
+        self.minutes = 0
+        self.count = 0
 
     def update(self):
         self.count += 1
@@ -33,8 +37,8 @@ class GameTime:
             self.count = 0
 
     def update_timer_surface(self):
-        timer_text = f"{self.minutes:02d}:{self.seconds:02d}"
-        self.timer_surface = self.font.render(timer_text, True, (0, 0, 0))
+        self.timer_text = f"{self.minutes:02d}:{self.seconds:02d}"
+        self.timer_surface = self.font.render(self.timer_text, True, (0, 0, 0))
 
     def draw(self, screen):
         if self.timer_surface:

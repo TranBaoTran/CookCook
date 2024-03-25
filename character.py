@@ -19,8 +19,8 @@ def load_sprite_sheets(dir1, width, height, scale, direction=False):
 
         sprites = []
         for i in range(sprite_sheet.get_width() // width):
-            # surface = pygame.Surface((width, height), pygame.SRCALPHA)
-            surface = pygame.Surface((width, height)).convert_alpha()
+            surface = pygame.Surface((width, height), pygame.SRCALPHA)
+            # surface = pygame.Surface((width, height)).convert_alpha()
             rect = pygame.Rect(i * width, 0, width, height)
             surface.blit(sprite_sheet, (0, 0), rect)
             img = pygame.transform.scale(surface, (width * scale, height * scale))
@@ -109,6 +109,17 @@ class Player(pygame.sprite.Sprite):
         self.sprite = sprites[sprite_index]
         self.animation_count += 1
         self.update()
+
+    def die(self):
+        sprite_sheet_name = "dead" + "_" + self.direction
+        sprites = self.SPRITES[sprite_sheet_name]
+        sprite_index = (self.animation_count //
+                        20) % len(sprites)
+        self.sprite = sprites[sprite_index]
+        self.animation_count += 1
+        self.update()
+        print(sprite_index)
+        return True if sprite_index == 2 else False
 
     def update(self):
         self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))

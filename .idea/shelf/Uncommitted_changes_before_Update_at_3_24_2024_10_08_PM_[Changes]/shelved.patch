@@ -1,0 +1,754 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\n\r\nimport globalvariable\r\nimport slime\r\nimport timer\r\nimport pytmx\r\n\r\nSCREEN_COLOR = (255, 255, 255)\r\nwin = pygame.display.set_mode((globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT))\r\npygame.display.set_caption(\"SlimeGame\")\r\nmap_path = \"map01.tmx\"\r\nbg_img = pygame.image.load(\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png\")\r\n\r\ndef redrawWindow(screen, player, time):\r\n    #screen.fill(SCREEN_COLOR)\r\n    tilemap = pytmx.load_pygame(map_path)\r\n    screen.blit(bg_img, (0, 0))\r\n    for layer in tilemap.visible_layers:\r\n        if isinstance(layer, pytmx.TiledTileLayer):\r\n            for x, y, gid in layer:\r\n                tile = tilemap.get_tile_image_by_gid(gid)\r\n                if tile:\r\n                    screen.blit(tile, (x * tilemap.tilewidth, y * tilemap.tileheight))\r\n    player.draw(screen)\r\n    time.draw(screen)\r\n    pygame.display.flip()\r\n\r\n\r\ndef main():\r\n    run = True\r\n    s = slime.Slime(200, 200, \"Red_Slime\", 0.7)\r\n    clock = pygame.time.Clock()\r\n    timer.GameTime.initialize_font()\r\n    time = timer.GameTime(10,10)\r\n\r\n    while run:\r\n        clock.tick(globalvariable.FPS)\r\n        for event in pygame.event.get():\r\n            if event.type == pygame.QUIT:\r\n                run = False\r\n                pygame.quit()\r\n        s.move()\r\n        time.update()\r\n        redrawWindow(win, s, time)\r\n\r\n\r\nif __name__ == '__main__':\r\n    pygame.init()\r\n    main()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/main.py	(date 1711292791411)
+@@ -1,49 +1,134 @@
+ import pygame
++from pygame import font
+ 
+ import globalvariable
+ import slime
+ import timer
+ import pytmx
+-
++import character
++pygame.init()
+ SCREEN_COLOR = (255, 255, 255)
+-win = pygame.display.set_mode((globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT))
++win = pygame.display.set_mode((globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT),
++                              pygame.RESIZABLE | pygame.DOUBLEBUF)
+ pygame.display.set_caption("SlimeGame")
+ map_path = "map01.tmx"
+ bg_img = pygame.image.load("asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png")
++tiled_map = pytmx.load_pygame(map_path)
++game_over = False
++bg = pygame.transform.scale(pygame.image.load("asset/img/restart/Background.png"),
++                            (globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT))
++star = pygame.transform.scale(pygame.image.load("asset/img/restart/star.png"), (30, 30))
++score_text = "Score"
++f = pygame.font.Font('Grand9k Pixel.ttf', 40)
++score_text = f.render('Score', True, (0, 0, 0))
++
+ 
+-def redrawWindow(screen, player, time):
+-    #screen.fill(SCREEN_COLOR)
+-    tilemap = pytmx.load_pygame(map_path)
++def restartGame(screen):
++    screen.blit(bg, (0, 0))
++    screen.blit(star, (0, 0))
++    screen.blit(score_text, (globalvariable.SCREEN_WIDTH/3, globalvariable.SCREEN_HEIGHT/4))
++
++
++def drawMap(screen):
+     screen.blit(bg_img, (0, 0))
+-    for layer in tilemap.visible_layers:
++    for layer in tiled_map.visible_layers:
+         if isinstance(layer, pytmx.TiledTileLayer):
+             for x, y, gid in layer:
+-                tile = tilemap.get_tile_image_by_gid(gid)
++                tile = tiled_map.get_tile_image_by_gid(gid)
+                 if tile:
+-                    screen.blit(tile, (x * tilemap.tilewidth, y * tilemap.tileheight))
+-    player.draw(screen)
++                    screen.blit(tile, (x * tiled_map.tilewidth, y * tiled_map.tileheight))
++
++
++blocks = []
++
++
++def getGround():
++    for obj in tiled_map.get_layer_by_name("trigger"):
++        rect = pygame.Rect(obj.x, obj.y, obj.width, obj.height)
++        blocks.append({"name": obj.name, "rect": rect})
++
++
++def redrawWindow(screen, player, time, offset_x):
++    # screen.fill(SCREEN_COLOR)
++    drawMap(screen)
++    player.draw(screen, offset_x)
+     time.draw(screen)
+     pygame.display.flip()
+ 
+ 
++def collide(player, dx):
++    player.move(dx, 0)
++    player.update()
++    collided_object = None
++    for obj in blocks:
++        if player.rect.colliderect(obj["rect"]):
++            collided_object = obj
++
++    player.move(-dx, 0)
++    player.update()
++    return collided_object
++
++
++def handle_vertical_collision(player, dy):
++    collided_objects = []
++    for obj in blocks:
++        if player.rect.colliderect(obj["rect"]) and obj["name"] == "ground":
++            if dy > 0:
++                player.rect.bottom = obj["rect"].top
++                player.landed()
++            elif dy < 0:
++                player.rect.top = obj["rect"].bottom
++                player.hit_head()
++
++            collided_objects.append(obj)
++
++    return collided_objects
++
++
++def handle_move(player):
++    keys = pygame.key.get_pressed()
++
++    player.x_vel = 0
++    collide_left = collide(player, -globalvariable.PLAYER_VEL * 2)
++    collide_right = collide(player, globalvariable.PLAYER_VEL * 2)
++    if keys[pygame.K_LEFT] and not collide_left and player.rect.x > 0:
++        player.move_left(globalvariable.PLAYER_VEL)
++    if keys[pygame.K_RIGHT] and not collide_right and player.rect.right < globalvariable.SCREEN_WIDTH:
++        player.move_right(globalvariable.PLAYER_VEL)
++
++    vertical_collide = handle_vertical_collision(player, player.y_vel)
++
++
+ def main():
++    global game_over
+     run = True
+-    s = slime.Slime(200, 200, "Red_Slime", 0.7)
++    # s = slime.Slime(0, 0, "Red_Slime", 0.7)
++    player = character.Player(100, 100, 30, 50, 0.5)
++    offset_x = 0
+     clock = pygame.time.Clock()
+     timer.GameTime.initialize_font()
+-    time = timer.GameTime(10,10)
+-
++    time = timer.GameTime(10, 10)
++    getGround()
+     while run:
+         clock.tick(globalvariable.FPS)
+         for event in pygame.event.get():
+             if event.type == pygame.QUIT:
+                 run = False
+                 pygame.quit()
+-        s.move()
+-        time.update()
+-        redrawWindow(win, s, time)
++            if event.type == pygame.KEYDOWN:
++                if event.key == pygame.K_SPACE and player.jump_count < 2:
++                    player.jump()
++        if game_over:
++            restartGame(win)
++            pygame.display.flip()
++        else:
++            player.loop(globalvariable.FPS)
++            time.update()
++            handle_move(player)
++            redrawWindow(win, player, time, offset_x)
++        if player.rect.top > globalvariable.SCREEN_HEIGHT:
++            game_over = True
+ 
+ 
+ if __name__ == '__main__':
+-    pygame.init()
+     main()
+Index: globalvariable.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>SCREEN_WIDTH = 960\r\nSCREEN_HEIGHT = 640\r\nFPS = 36\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/globalvariable.py b/globalvariable.py
+--- a/globalvariable.py	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/globalvariable.py	(date 1711123082075)
+@@ -1,3 +1,4 @@
+ SCREEN_WIDTH = 960
+ SCREEN_HEIGHT = 640
+-FPS = 36
++FPS = 60
++PLAYER_VEL = 3
+Index: slime.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import math\r\n\r\nimport pygame\r\nimport globalvariable\r\n\r\n\r\nclass SpriteSheet:\r\n    def __init__(self, image):\r\n        self.sheet = image\r\n\r\n    def get_image(self, frame, width, height, scale, colour):\r\n        image = pygame.Surface((width, height)).convert_alpha()\r\n        image.blit(self.sheet, (0, 0), ((frame * width), 0, width, height))\r\n        image = pygame.transform.scale(image, (width * scale, height * scale))\r\n        image.set_colorkey(colour)\r\n        bounding_rect = image.get_bounding_rect()\r\n        content_image = image.subsurface(bounding_rect)\r\n        return content_image\r\n\r\n    def get_image_normal(self, frame, width, height, scale, colour):\r\n        image = pygame.Surface((width, height)).convert_alpha()\r\n        image.blit(self.sheet, (0, 0), ((frame * width), 0, width, height))\r\n        image = pygame.transform.scale(image, (width * scale, height * scale))\r\n        image.set_colorkey(colour)\r\n        bounding_rect = image.get_bounding_rect()\r\n        content_image = image.subsurface((34*scale, 94*scale, 54*scale, 34*scale))\r\n        return content_image\r\n\r\n\r\nclass Slime(pygame.sprite.Sprite):\r\n    vel = 3\r\n    isJump = False\r\n    jumpCount = 10\r\n    left = False\r\n    right = False\r\n    walkCount = 0\r\n    stand_frame = 0\r\n    jump_frame = 0\r\n    animation_step = 8\r\n    animation_jump_step = 13\r\n\r\n    def __init__(self, x, y, name, scale):\r\n        pygame.sprite.Sprite.__init__(self)\r\n        self.x = x\r\n        self.y = y\r\n        self.scale = scale\r\n        self.STANDING_IMG = \"asset/img/character/\" + name + \"/Idle.png\"\r\n        self.WALKING_IMG = \"asset/img/character/\" + name + \"/walk.png\"\r\n        self.JUMPING_IMG = \"asset/img/character/\" + name + \"/Jump.png\"\r\n        # stand sprite\r\n        self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()\r\n        self.sprite_sheet_stand = SpriteSheet(self.sprite_sheet_stand_img)\r\n        self.animation_stand_list = []\r\n        # walk sprite\r\n        self.sprite_sheet_walk_img = pygame.image.load(self.WALKING_IMG).convert_alpha()\r\n        self.sprite_sheet_walk = SpriteSheet(self.sprite_sheet_walk_img)\r\n        self.animation_walk_left_list = []\r\n        self.animation_walk_right_list = []\r\n        # jump sprite\r\n        self.sprite_sheet_jump_img = pygame.image.load(self.JUMPING_IMG).convert_alpha()\r\n        self.sprite_sheet_jump = SpriteSheet(self.sprite_sheet_jump_img)\r\n        self.animation_jump_list = []\r\n        # number of normal sprites\r\n        self.animation_change_frame = math.ceil(globalvariable.FPS / self.animation_step)\r\n        # number of jump sprites\r\n        self.animation_jump_change_frame = math.ceil(globalvariable.FPS / self.animation_jump_step)\r\n        self.loadImage()\r\n        self.rect = self.animation_stand_list[0].get_rect()\r\n        self.width = self.animation_stand_list[0].get_width()\r\n        self.height = self.animation_stand_list[0].get_height()\r\n\r\n    def loadImage(self):\r\n        # stand\r\n        for x in range(self.animation_step):\r\n            self.animation_stand_list.append(self.sprite_sheet_stand.get_image_normal(x, 128, 128, self.scale, (0, 0, 0)))\r\n        # walk\r\n        for x in range(self.animation_step):\r\n            self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image_normal(x, 128, 128, self.scale, (0, 0, 0)))\r\n            self.animation_walk_left_list.append(\r\n                pygame.transform.flip(self.animation_walk_right_list[x], True, False).convert_alpha())\r\n        # jump\r\n        for x in range(self.animation_jump_step):\r\n            self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, self.scale, (0, 0, 0)))\r\n\r\n    def draw(self, win):\r\n        if self.walkCount + 1 >= globalvariable.FPS:\r\n            self.walkCount = 0\r\n\r\n        if self.stand_frame + 1 >= globalvariable.FPS:\r\n            self.stand_frame = 0\r\n\r\n        if self.isJump:\r\n            win.blit(self.animation_jump_list[self.jump_frame // self.animation_jump_change_frame], (self.x, self.y))\r\n            self.jump_frame += 1\r\n            self.stand_frame = 0\r\n        elif self.left:\r\n            win.blit(self.animation_walk_left_list[self.walkCount // self.animation_change_frame], (self.x, self.y))\r\n            self.walkCount += 1\r\n            self.stand_frame = 0\r\n        elif self.right:\r\n            win.blit(self.animation_walk_right_list[self.walkCount // self.animation_change_frame], (self.x, self.y))\r\n            self.walkCount += 1\r\n            self.stand_frame = 0\r\n        else:\r\n            win.blit(self.animation_stand_list[self.stand_frame // self.animation_change_frame], (self.x, self.y))\r\n            self.stand_frame += 1\r\n\r\n    def move(self):\r\n        keys = pygame.key.get_pressed()\r\n\r\n        if keys[pygame.K_LEFT] and self.x > self.vel:\r\n            self.x -= self.vel\r\n            self.left = True\r\n            self.right = False\r\n\r\n        elif keys[pygame.K_RIGHT] and self.x < globalvariable.SCREEN_WIDTH - self.width - self.vel:\r\n            self.x += self.vel\r\n            self.left = False\r\n            self.right = True\r\n\r\n        else:\r\n            self.right = False\r\n            self.left = False\r\n            self.walkCount = 0\r\n\r\n        if not self.isJump:\r\n            if keys[pygame.K_UP] and self.y > self.vel:\r\n                self.y -= self.vel\r\n                self.right = False\r\n                self.left = False\r\n                self.walkCount = 0\r\n\r\n            if keys[pygame.K_DOWN] and self.y < globalvariable.SCREEN_HEIGHT - self.height - self.vel:\r\n                self.y += self.vel\r\n\r\n            if keys[pygame.K_SPACE]:\r\n                self.isJump = True\r\n\r\n        else:\r\n            if self.jumpCount >= -10:\r\n                neg = 1\r\n                if self.jumpCount < 0:\r\n                    neg = -1\r\n                self.y -= (self.jumpCount ** 2) * 0.3 * neg\r\n                self.jumpCount -= 1\r\n            else:\r\n                self.isJump = False\r\n                self.jumpCount = 10\r\n                self.jump_frame = 0\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/slime.py b/slime.py
+--- a/slime.py	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/slime.py	(date 1710949825105)
+@@ -44,9 +44,9 @@
+         self.x = x
+         self.y = y
+         self.scale = scale
+-        self.STANDING_IMG = "asset/img/character/" + name + "/Idle.png"
+-        self.WALKING_IMG = "asset/img/character/" + name + "/walk.png"
+-        self.JUMPING_IMG = "asset/img/character/" + name + "/Jump.png"
++        self.STANDING_IMG = "asset/img/character.py/" + name + "/Idle.png"
++        self.WALKING_IMG = "asset/img/character.py/" + name + "/walk.png"
++        self.JUMPING_IMG = "asset/img/character.py/" + name + "/Jump.png"
+         # stand sprite
+         self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()
+         self.sprite_sheet_stand = SpriteSheet(self.sprite_sheet_stand_img)
+@@ -82,6 +82,9 @@
+         for x in range(self.animation_jump_step):
+             self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, self.scale, (0, 0, 0)))
+ 
++    def gravity(self):
++        self.y += 10
++
+     def draw(self, win):
+         if self.walkCount + 1 >= globalvariable.FPS:
+             self.walkCount = 0
+@@ -106,6 +109,7 @@
+             self.stand_frame += 1
+ 
+     def move(self):
++        self.gravity()
+         keys = pygame.key.get_pressed()
+ 
+         if keys[pygame.K_LEFT] and self.x > self.vel:
+Index: client.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\nimport math\r\nfrom pygame.locals import *\r\n\r\nimport slimesheet\r\n\r\nDEFAULT_SCREEN_WIDTH = 960\r\nDEFAULT_SCREEN_HEIGHT = 640\r\nSCREEN_WIDTH = DEFAULT_SCREEN_WIDTH\r\nSCREEN_HEIGHT = DEFAULT_SCREEN_HEIGHT\r\nFPS = 36\r\nSCREEN_COLOR = (255, 255, 255)\r\nCHARACTER_HEIGHT = 30\r\nBLOCK_HEIGHT = 50\r\nwin = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))\r\npygame.display.set_caption(\"CookCook\")\r\nlast_update = pygame.time.get_ticks()\r\nANIMATION_COOLDOWN = 500\r\n\r\nclientNumber = 0\r\n\r\n\r\nclass Player(pygame.sprite.Sprite):\r\n    STANDING_IMG = \"asset/img/character/Blue_Slime/Idle.png\"\r\n    WALKING_IMG = \"asset/img/character/Blue_Slime/walk.png\"\r\n    JUMPING_IMG = \"asset/img/character/Blue_Slime/Jump.png\"\r\n\r\n    def __init__(self, x, y, width, height, color):\r\n        pygame.sprite.Sprite.__init__(self)\r\n        self.x = x\r\n        self.y = y\r\n        self.width = width\r\n        self.height = height\r\n        self.color = color\r\n        self.rect = (x, y, width, height)\r\n        self.vel = 3\r\n        self.isJump = False\r\n        self.jumpCount = 10\r\n        self.left = False\r\n        self.right = False\r\n        self.walkCount = 0\r\n        self.stand_frame = 0\r\n        self.jump_frame = 0\r\n        # stand sprite\r\n        self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()\r\n        self.sprite_sheet_stand = slimesheet.SpriteSheet(self.sprite_sheet_stand_img)\r\n        self.animation_stand_list = []\r\n        # walk sprite\r\n        self.sprite_sheet_walk_img = pygame.image.load(self.WALKING_IMG).convert_alpha()\r\n        self.sprite_sheet_walk = slimesheet.SpriteSheet(self.sprite_sheet_walk_img)\r\n        self.animation_walk_left_list = []\r\n        self.animation_walk_right_list = []\r\n        # jump sprite\r\n        self.sprite_sheet_jump_img = pygame.image.load(self.JUMPING_IMG).convert_alpha()\r\n        self.sprite_sheet_jump = slimesheet.SpriteSheet(self.sprite_sheet_jump_img)\r\n        self.animation_jump_list = []\r\n        # number of normal sprites\r\n        self.animation_step = 8\r\n        self.animation_change_frame = math.ceil(FPS / self.animation_step)\r\n        # number of jump sprites\r\n        self.animation_jump_step = 13\r\n        self.animation_jump_change_frame = math.ceil(FPS / self.animation_jump_step)\r\n        self.loadImage()\r\n\r\n    def loadImage(self):\r\n        # stand\r\n        for x in range(self.animation_step):\r\n            self.animation_stand_list.append(self.sprite_sheet_stand.get_image(x, 128, 128, 1, (0, 0, 0)))\r\n        # walk\r\n        for x in range(self.animation_step):\r\n            self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image(x, 128, 128, 1, (0, 0, 0)))\r\n            self.animation_walk_left_list.append(\r\n                pygame.transform.flip(self.sprite_sheet_walk.get_image(x, 128, 128, 1, (0, 0, 0)), True, False))\r\n        # jump\r\n        for x in range(self.animation_jump_step):\r\n            self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, 1, (0, 0, 0)))\r\n\r\n    def draw(self, win):\r\n        if self.walkCount + 1 >= FPS:\r\n            self.walkCount = 0\r\n\r\n        if self.stand_frame + 1 >= FPS:\r\n            self.stand_frame = 0\r\n\r\n        if self.isJump:\r\n            win.blit(self.animation_jump_list[self.jump_frame // self.animation_jump_change_frame], (self.x, self.y))\r\n            self.jump_frame += 1\r\n            self.stand_frame = 0\r\n        elif self.left:\r\n            win.blit(self.animation_walk_left_list[self.walkCount // self.animation_change_frame], (self.x, self.y))\r\n            self.walkCount += 1\r\n            self.stand_frame = 0\r\n        elif self.right:\r\n            win.blit(self.animation_walk_right_list[self.walkCount // self.animation_change_frame], (self.x, self.y))\r\n            self.walkCount += 1\r\n            self.stand_frame = 0\r\n        else:\r\n            win.blit(self.animation_stand_list[self.stand_frame // self.animation_change_frame], (self.x, self.y))\r\n            self.stand_frame += 1\r\n        pygame.draw.rect(win, self.color, self.rect)\r\n\r\n    def move(self):\r\n        keys = pygame.key.get_pressed()\r\n\r\n        if keys[pygame.K_LEFT] and self.x > self.vel:\r\n            self.x -= self.vel\r\n            self.left = True\r\n            self.right = False\r\n\r\n        elif keys[pygame.K_RIGHT] and self.x < SCREEN_WIDTH - self.width - self.vel:\r\n            self.x += self.vel\r\n            self.left = False\r\n            self.right = True\r\n\r\n        else:\r\n            self.right = False\r\n            self.left = False\r\n            self.walkCount = 0\r\n\r\n        if not self.isJump:\r\n            if keys[pygame.K_UP] and self.y > self.vel:\r\n                self.y -= self.vel\r\n                self.right = False\r\n                self.left = False\r\n                self.walkCount = 0\r\n\r\n            if keys[pygame.K_DOWN] and self.y < SCREEN_HEIGHT - self.height - self.vel:\r\n                self.y += self.vel\r\n\r\n            if keys[pygame.K_SPACE]:\r\n                self.isJump = True\r\n\r\n        else:\r\n            if self.jumpCount >= -10:\r\n                neg = 1\r\n                if self.jumpCount < 0:\r\n                    neg = -1\r\n                self.y -= (self.jumpCount ** 2) * 0.3 * neg\r\n                self.jumpCount -= 1\r\n            else:\r\n                self.isJump = False\r\n                self.jumpCount = 10\r\n                self.jump_frame = 0\r\n        self.rect = (self.x, self.y, self.width, self.height)\r\n\r\n\r\ndef redrawWindow(win, player):\r\n    win.fill(SCREEN_COLOR)\r\n    player.draw(win)\r\n    pygame.display.update()\r\n\r\n\r\ndef main():\r\n    run = True\r\n    p = Player(50, 400, CHARACTER_HEIGHT, CHARACTER_HEIGHT, (0, 255, 0))\r\n    clock = pygame.time.Clock()\r\n\r\n    while run:\r\n        clock.tick(FPS)\r\n        for event in pygame.event.get():\r\n            if event.type == pygame.QUIT:\r\n                run = False\r\n                pygame.quit()\r\n\r\n        p.move()\r\n        redrawWindow(win, p)\r\n\r\n\r\nif __name__ == '__main__':\r\n    pygame.init()\r\n    main()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client.py b/client.py
+--- a/client.py	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/client.py	(date 1710949825085)
+@@ -21,9 +21,9 @@
+ 
+ 
+ class Player(pygame.sprite.Sprite):
+-    STANDING_IMG = "asset/img/character/Blue_Slime/Idle.png"
+-    WALKING_IMG = "asset/img/character/Blue_Slime/walk.png"
+-    JUMPING_IMG = "asset/img/character/Blue_Slime/Jump.png"
++    STANDING_IMG = "asset/img/character.py/Blue_Slime/Idle.png"
++    WALKING_IMG = "asset/img/character.py/Blue_Slime/walk.png"
++    JUMPING_IMG = "asset/img/character.py/Blue_Slime/Jump.png"
+ 
+     def __init__(self, x, y, width, height, color):
+         pygame.sprite.Sprite.__init__(self)
+Index: character.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/character.py b/character.py
+new file mode 100644
+--- /dev/null	(date 1711184118905)
++++ b/character.py	(date 1711184118905)
+@@ -0,0 +1,115 @@
++from os import listdir
++from os.path import isfile, join
++
++import pygame
++
++
++def flip(sprites):
++    return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
++
++
++def load_sprite_sheets(dir1, width, height, scale, direction=False):
++    path = join("asset", "img", "character", dir1)
++    images = [f for f in listdir(path) if isfile(join(path, f))]
++
++    all_sprites = {}
++
++    for image in images:
++        sprite_sheet = pygame.image.load(join(path, image)).convert_alpha()
++
++        sprites = []
++        for i in range(sprite_sheet.get_width() // width):
++            # surface = pygame.Surface((width, height), pygame.SRCALPHA)
++            surface = pygame.Surface((width, height)).convert_alpha()
++            rect = pygame.Rect(i * width, 0, width, height)
++            surface.blit(sprite_sheet, (0, 0), rect)
++            img = pygame.transform.scale(surface, (width * scale, height * scale))
++            img = img.subsurface((34 * scale, 66 * scale, 60 * scale, 62 * scale))
++            sprites.append(img)
++
++        if direction:
++            all_sprites[image.replace(".png", "") + "_right"] = sprites
++            all_sprites[image.replace(".png", "") + "_left"] = flip(sprites)
++        else:
++            all_sprites[image.replace(".png", "")] = sprites
++
++    return all_sprites
++
++
++class Player(pygame.sprite.Sprite):
++    GRAVITY = 1
++    ANIMATION_DELAY = 5
++
++    def __init__(self, x, y, width, height, scale):
++        super().__init__()
++        self.SPRITES = load_sprite_sheets("Blue_Slime - Copy", 128, 128, scale, True)
++        self.rect = pygame.Rect(x, y, width * scale, height * scale)
++        self.x_vel = 0
++        self.y_vel = 0
++        self.direction = "left"
++        self.animation_count = 0
++        self.fall_count = 0
++        self.jump_count = 0
++        self.hit_count = 0
++        self.climbing = False
++
++    def jump(self):
++        self.y_vel = -self.GRAVITY * 8
++        self.animation_count = 0
++        self.jump_count += 1
++        if self.jump_count == 1:
++            self.fall_count = 0
++
++    def move(self, dx, dy):
++        self.rect.x += dx
++        self.rect.y += dy
++
++    def move_left(self, vel):
++        self.x_vel = -vel
++        if self.direction != "left":
++            self.direction = "left"
++            self.animation_count = 0
++
++    def move_right(self, vel):
++        self.x_vel = vel
++        if self.direction != "right":
++            self.direction = "right"
++            self.animation_count = 0
++
++    def loop(self, fps):
++        self.y_vel += min(1, (self.fall_count / fps) * self.GRAVITY)
++        self.move(self.x_vel, self.y_vel)
++        self.fall_count += 1
++        self.update_sprite()
++
++    def landed(self):
++        self.fall_count = 0
++        self.y_vel = 0
++        self.jump_count = 0
++
++    def hit_head(self):
++        self.hit_count = 0
++        self.y_vel *= -1
++
++    def update_sprite(self):
++        sprite_sheet = "idle"
++        if self.y_vel < 0:
++            if self.jump_count > 0:
++                sprite_sheet = "jump"
++        elif self.y_vel > self.GRAVITY * 2:
++            sprite_sheet = "fall"
++        elif self.x_vel != 0:
++            sprite_sheet = "walk"
++        sprite_sheet_name = sprite_sheet + "_" + self.direction
++        sprites = self.SPRITES[sprite_sheet_name]
++        sprite_index = (self.animation_count //
++                        self.ANIMATION_DELAY) % len(sprites)
++        self.sprite = sprites[sprite_index]
++        self.animation_count += 1
++        self.update()
++
++    def update(self):
++        self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))
++
++    def draw(self, win, offset_x):
++        win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y))
+Index: .idea/CookCook.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.11 (CookCook)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/CookCook.iml b/.idea/CookCook.iml
+--- a/.idea/CookCook.iml	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/.idea/CookCook.iml	(date 1710751528258)
+@@ -5,7 +5,7 @@
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.11 (CookCook)" jdkType="Python SDK" />
++    <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2eaf3889-e115-401a-9ada-b16254ce3ec9\" name=\"Changes\" comment=\"fix movement\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2bwUSgmhhnGj0OqvYRXi2asoYHf\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Python.client.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.globalvariable.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.slime.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Python.main\">\r\n    <configuration name=\"client\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"CookCook\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/client.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"globalvariable\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"CookCook\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/globalvariable.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"CookCook\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"slime\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"CookCook\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/slime.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.globalvariable\" />\r\n        <item itemvalue=\"Python.slime\" />\r\n        <item itemvalue=\"Python.client\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2eaf3889-e115-401a-9ada-b16254ce3ec9\" name=\"Changes\" comment=\"\" />\r\n      <created>1707125636202</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1707125636202</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"first base\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710132682395</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710132682395</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"first base\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710132872272</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710132872272</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"try animation\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710152093675</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710152093675</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"try animation\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710308763584</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710308763584</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"complete animation and optimize\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710310474394</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710310474394</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"insert timer\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710314515184</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710314515184</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"add image\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710314615669</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710314615669</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"fix movement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710581860955</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710581860955</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"first base\" />\r\n    <MESSAGE value=\"try animation\" />\r\n    <MESSAGE value=\"complete animation and optimize\" />\r\n    <MESSAGE value=\"insert timer\" />\r\n    <MESSAGE value=\"add image\" />\r\n    <MESSAGE value=\"fix movement\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fix movement\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/.idea/workspace.xml	(date 1711292810038)
+@@ -5,7 +5,19 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="2eaf3889-e115-401a-9ada-b16254ce3ec9" name="Changes" comment="fix movement">
++      <change afterPath="$PROJECT_DIR$/asset/img/restart/Background.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/asset/img/restart/star.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/asset/img/weapon/rock.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/character.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/object.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/CookCook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CookCook.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/globalvariable.py" beforeDir="false" afterPath="$PROJECT_DIR$/globalvariable.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/map01.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/map01.tmx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/slime.py" beforeDir="false" afterPath="$PROJECT_DIR$/slime.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -31,18 +43,28 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Python.client.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.globalvariable.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.slime.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Python.client.executor": "Run",
++    "Python.globalvariable.executor": "Run",
++    "Python.main.executor": "Run",
++    "Python.slime.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "master",
++    "last_opened_file_path": "D:/Backup/DH/OvercookPixel/CookCook",
++    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+   }
+-}</component>
++}]]></component>
++  <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="D:\Backup\DH\OvercookPixel\CookCook" />
++      <recent name="D:\Backup\DH\OvercookPixel\CookCook\asset\img\restart" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\Backup\DH\OvercookPixel\CookCook\asset\img\weapon" />
++    </key>
++  </component>
+   <component name="RunManager" selected="Python.main">
+     <configuration name="client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="CookCook" />
+@@ -134,8 +156,8 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Python.globalvariable" />
+         <item itemvalue="Python.slime" />
++        <item itemvalue="Python.globalvariable" />
+         <item itemvalue="Python.client" />
+       </list>
+     </recent_temporary>
+@@ -220,7 +242,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1710581860955</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="fix movement">
++      <option name="closed" value="true" />
++      <created>1710746337056</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1710746337057</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.10 (CookCook)\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.11 (CookCook)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/.idea/misc.xml	(date 1710751528285)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.10 (CookCook)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (CookCook)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (CookCook)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: map01.tmx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map version=\"1.10\" tiledversion=\"1.10.2\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"30\" height=\"20\" tilewidth=\"32\" tileheight=\"32\" infinite=\"0\" nextlayerid=\"7\" nextobjectid=\"31\">\r\n <tileset firstgid=\"1\" name=\"tile_set\" tilewidth=\"32\" tileheight=\"32\" tilecount=\"96\" columns=\"12\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png\" width=\"384\" height=\"256\"/>\r\n </tileset>\r\n <tileset firstgid=\"97\" name=\"Ladder1\" tilewidth=\"23\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder1.png\" width=\"23\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"98\" name=\"Tree4\" tilewidth=\"175\" tileheight=\"190\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png\" width=\"175\" height=\"190\"/>\r\n </tileset>\r\n <tileset firstgid=\"99\" name=\"2\" tilewidth=\"72\" tileheight=\"72\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/2.png\" width=\"72\" height=\"72\"/>\r\n </tileset>\r\n <tileset firstgid=\"100\" name=\"1\" tilewidth=\"45\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png\" width=\"45\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"101\" name=\"10\" tilewidth=\"10\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/10.png\" width=\"10\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"102\" name=\"14\" tilewidth=\"40\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/14.png\" width=\"40\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"103\" name=\"16\" tilewidth=\"22\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/16.png\" width=\"22\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"104\" name=\"19\" tilewidth=\"43\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/19.png\" width=\"43\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"105\" name=\"2\" tilewidth=\"22\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/2.png\" width=\"22\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"106\" name=\"3\" tilewidth=\"27\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/3.png\" width=\"27\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"107\" name=\"4\" tilewidth=\"39\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/4.png\" width=\"39\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"108\" name=\"Box\" tilewidth=\"32\" tileheight=\"32\" tilecount=\"1\" columns=\"1\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Box.png\" width=\"32\" height=\"32\"/>\r\n </tileset>\r\n <tileset firstgid=\"109\" name=\"Tree4\" tilewidth=\"32\" tileheight=\"32\" tilecount=\"36\" columns=\"6\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png\" width=\"192\" height=\"192\"/>\r\n </tileset>\r\n <imagelayer id=\"3\" name=\"BG\">\r\n  <image source=\"asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png\" width=\"960\" height=\"640\"/>\r\n </imagelayer>\r\n <layer id=\"1\" name=\"background\" width=\"30\" height=\"20\">\r\n  <data encoding=\"base64\" compression=\"zlib\">\r\n   eJztlNsKwjAMhuPcnWC98QEUyrzwwObNfBjf/zVsWMJi6WI6D0Pxh491G+mfpiEAf71Ks0BBzD/ohWwCVWBljK8hP9eaPEpiJ94vgaNxn5byZf+zMe4XhTX91vPvA2uB9f6l8PwN3NeAvzWJf5acDtD115Q6TeyfI6zZmLvLEc+rd89FqS10s8kTmuQsfSZH9HTQz0Wf2FPO7jIit2+5z3zku6Q1PhcEe7iEL3sXoNci7mvpqeEU3yG0u2hpP6/EVyN9mSFdH3hK3xtytQsF\r\n  </data>\r\n </layer>\r\n <layer id=\"5\" name=\"midground\" width=\"30\" height=\"20\">\r\n  <data encoding=\"base64\" compression=\"zlib\">\r\n   eJzt1EkOgkAQhWEWrvUAXsALcCMVHOIU53mIU+JwZf9KWBBilKKhYyIv+TZFdxWQBsfJk0Z8eKgp97UDaaaZYI/2vvP8TlpoGPaof7mexTm1EdP38ikddNFDH4MMZ4UzxAhjTDC1MHOGORZYYoW1hbkbbLHDHgeDXnLGvZhrjzjhjAuuylmFNzX5TuP8m2+444EnqsrZkjJKkZqLSoJevmJtMRCt/UPkOd0QyQt+nBfo\r\n  </data>\r\n </layer>\r\n <layer id=\"4\" name=\"object\" width=\"30\" height=\"20\">\r\n  <data encoding=\"base64\" compression=\"zlib\">\r\n   eJxjYBgFo2AUjILBCRJH7R0Fo2AUDFEAAOd0ASQ=\r\n  </data>\r\n </layer>\r\n <objectgroup id=\"6\" name=\"trigger\">\r\n  <object id=\"1\" name=\"ground\" x=\"0.5\" y=\"480\" width=\"127.5\" height=\"34\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"3\" name=\"ground\" x=\"160.5\" y=\"544\" width=\"191\" height=\"33.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"4\" name=\"ground\" x=\"127.5\" y=\"512.25\" width=\"32\" height=\"32\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"5\" name=\"ground\" x=\"352.5\" y=\"576.75\" width=\"63.5\" height=\"63\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"6\" name=\"ground\" x=\"448.5\" y=\"544\" width=\"31\" height=\"32\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"7\" name=\"ground\" x=\"513\" y=\"510.5\" width=\"31\" height=\"32\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"9\" name=\"ground\" x=\"608\" y=\"447.5\" width=\"31\" height=\"35\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"10\" name=\"ground\" x=\"576.5\" y=\"480.5\" width=\"32\" height=\"127.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"11\" name=\"ground\" x=\"640\" y=\"416\" width=\"95.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"12\" name=\"ground\" x=\"608\" y=\"592\" width=\"31\" height=\"48\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"13\" name=\"ground\" x=\"704.5\" y=\"447.5\" width=\"31\" height=\"34.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"14\" name=\"ground\" x=\"736\" y=\"480.5\" width=\"63.5\" height=\"35\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"15\" name=\"ground\" x=\"800.5\" y=\"513\" width=\"63.5\" height=\"35\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"16\" name=\"ground\" x=\"864\" y=\"480\" width=\"95.5\" height=\"33.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"17\" name=\"ground\" x=\"800.5\" y=\"384.5\" width=\"63\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"18\" name=\"ground\" x=\"31.5\" y=\"288.25\" width=\"160.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"19\" name=\"ground\" x=\"256\" y=\"319.75\" width=\"96\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"20\" name=\"ground\" x=\"383.5\" y=\"352.25\" width=\"32.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"21\" name=\"ground\" x=\"192\" y=\"128.25\" width=\"128\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"22\" name=\"ground\" x=\"224.5\" y=\"159.75\" width=\"160\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"23\" name=\"ground\" x=\"448.5\" y=\"224.25\" width=\"63\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"24\" name=\"ground\" x=\"577\" y=\"288.25\" width=\"94.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"25\" name=\"ground\" x=\"608.5\" y=\"128.25\" width=\"287.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"26\" name=\"ground\" x=\"639.5\" y=\"96.75\" width=\"224\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"27\" name=\"ground\" x=\"736\" y=\"64.75\" width=\"127.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"28\" name=\"ground\" x=\"736.5\" y=\"287.25\" width=\"96\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"29\" name=\"ground\" x=\"854\" y=\"288.25\" width=\"41.5\" height=\"31.5\">\r\n   <properties>\r\n    <property name=\"ground\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n  <object id=\"30\" name=\"ladder\" x=\"832.5\" y=\"287\" width=\"21.5\" height=\"97.5\">\r\n   <properties>\r\n    <property name=\"ladder\" value=\"yes\"/>\r\n   </properties>\r\n  </object>\r\n </objectgroup>\r\n</map>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/map01.tmx b/map01.tmx
+--- a/map01.tmx	(revision 495882573556089a070183f6c8ed4d4e49e8592c)
++++ b/map01.tmx	(date 1711292732989)
+@@ -1,63 +1,77 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="31">
++<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="44">
+  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="96" columns="12">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png" width="384" height="256"/>
+  </tileset>
+  <tileset firstgid="97" name="Ladder1" tilewidth="23" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Ladder1.png" width="23" height="32"/>
+  </tileset>
+- <tileset firstgid="98" name="Tree4" tilewidth="175" tileheight="190" tilecount="1" columns="1">
+-  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="175" height="190"/>
+- </tileset>
+- <tileset firstgid="99" name="2" tilewidth="72" tileheight="72" tilecount="1" columns="1">
++ <tileset firstgid="98" name="2" tilewidth="72" tileheight="72" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Fountain/2.png" width="72" height="72"/>
+  </tileset>
+- <tileset firstgid="100" name="1" tilewidth="45" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="99" name="1" tilewidth="45" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Benches/1.png" width="45" height="32"/>
+  </tileset>
+- <tileset firstgid="101" name="10" tilewidth="10" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="100" name="10" tilewidth="10" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Grass/10.png" width="10" height="32"/>
+  </tileset>
+- <tileset firstgid="102" name="14" tilewidth="40" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="101" name="14" tilewidth="40" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/14.png" width="40" height="32"/>
+  </tileset>
+- <tileset firstgid="103" name="16" tilewidth="22" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="102" name="16" tilewidth="22" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/16.png" width="22" height="32"/>
+  </tileset>
+- <tileset firstgid="104" name="19" tilewidth="43" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="103" name="19" tilewidth="43" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Bushes/19.png" width="43" height="32"/>
+  </tileset>
+- <tileset firstgid="105" name="2" tilewidth="22" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="104" name="2" tilewidth="22" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/2.png" width="22" height="32"/>
+  </tileset>
+- <tileset firstgid="106" name="3" tilewidth="27" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="105" name="3" tilewidth="27" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/3.png" width="27" height="32"/>
+  </tileset>
+- <tileset firstgid="107" name="4" tilewidth="39" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="106" name="4" tilewidth="39" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Stones/4.png" width="39" height="32"/>
+  </tileset>
+- <tileset firstgid="108" name="Box" tilewidth="32" tileheight="32" tilecount="1" columns="1">
++ <tileset firstgid="107" name="Box" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Box.png" width="32" height="32"/>
+  </tileset>
+- <tileset firstgid="109" name="Tree4" tilewidth="32" tileheight="32" tilecount="36" columns="6">
++ <tileset firstgid="108" name="Tree4" tilewidth="32" tileheight="32" tilecount="36" columns="6">
+   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" width="192" height="192"/>
+  </tileset>
+- <imagelayer id="3" name="BG">
+-  <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png" width="960" height="640"/>
++ <tileset firstgid="144" name="Map_tiles" tilewidth="32" tileheight="32" tilecount="144" columns="12">
++  <image source="asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/1 Tiles/Map_tiles.png" width="384" height="384"/>
++ </tileset>
++ <tileset firstgid="288" name="1" tilewidth="32" tileheight="32" tilecount="4" columns="2">
++  <image source="asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/1.png" width="64" height="64"/>
++ </tileset>
++ <tileset firstgid="292" name="5" tilewidth="22" tileheight="32" tilecount="1" columns="1">
++  <image source="asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/5.png" width="22" height="32"/>
++ </tileset>
++ <tileset firstgid="293" name="6" tilewidth="31" tileheight="32" tilecount="1" columns="1">
++  <image source="asset/img/craftpix-net-280167-free-level-map-pixel-art-assets-pack/2 Objects/Crystals/6.png" width="31" height="32"/>
++ </tileset>
++ <imagelayer id="3" name="BG" offsetx="-56" offsety="-5">
++  <image source="asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/orig.png" width="1152" height="648"/>
+  </imagelayer>
++ <layer id="7" name="water" width="30" height="20">
++  <data encoding="base64" compression="zlib">
++   eJxjYBgFo2AUjIJRMApGwSgYfGACFM8B4olAvAKI59LBXpA9K4F4CxSvIMNuAIkhCDk=
++  </data>
++ </layer>
+  <layer id="1" name="background" width="30" height="20">
+   <data encoding="base64" compression="zlib">
+-   eJztlNsKwjAMhuPcnWC98QEUyrzwwObNfBjf/zVsWMJi6WI6D0Pxh491G+mfpiEAf71Ks0BBzD/ohWwCVWBljK8hP9eaPEpiJ94vgaNxn5byZf+zMe4XhTX91vPvA2uB9f6l8PwN3NeAvzWJf5acDtD115Q6TeyfI6zZmLvLEc+rd89FqS10s8kTmuQsfSZH9HTQz0Wf2FPO7jIit2+5z3zku6Q1PhcEe7iEL3sXoNci7mvpqeEU3yG0u2hpP6/EVyN9mSFdH3hK3xtytQsF
++   eJztlMEKwjAMhuPcTbBefACFMg9TmXqYD+PVi+9/t2EphtJmzaai4g8f2xjtl7VdAP55ViaOgpgqx16Fd6ceF7JyVI5Fpq8Bfa0NOUpiw57Pjl3mPC3V6/3HzHG/mnB/cZ0/YU1uRCq1Y8nI3X8p+O0HYkiwpi105+tbE/vfX5n9Gxy+X2n74pisoetNlpDCe+mYGtFp4NEXbWRO3rvLAM255ftmA++c7vE6I7zDRLzeXYBuLbhTwgjeFJK/pfmsML4a6PWkculxcu8dPvQLWQ==
+   </data>
+  </layer>
+  <layer id="5" name="midground" width="30" height="20">
+   <data encoding="base64" compression="zlib">
+-   eJzt1EkOgkAQhWEWrvUAXsALcCMVHOIU53mIU+JwZf9KWBBilKKhYyIv+TZFdxWQBsfJk0Z8eKgp97UDaaaZYI/2vvP8TlpoGPaof7mexTm1EdP38ikddNFDH4MMZ4UzxAhjTDC1MHOGORZYYoW1hbkbbLHDHgeDXnLGvZhrjzjhjAuuylmFNzX5TuP8m2+444EnqsrZkjJKkZqLSoJevmJtMRCt/UPkOd0QyQt+nBfo
++   eJzt1VtPwjAYxvGScD3vGXLJ+AL7RMjUERUigpw8EEUTD5+Zf5MulqXTvguDC3mSXzaWtu/bZoBSx+wi50hwJpzXN6S1fsulcD0dad//JWXOUppGTakQTZyiVZPN1z2m6FXRXMlcmGty0C6qzRWucYMBhnuqe4sR7jDGpMQa0u/7PaaYYY4Flp5zJe9lmvv8gEc84RkrwVquPlzvo+v39AWvWOMN78Jadcez/N50AnNtGzof+MQXvtEV1tbrhDjJPY/RydWzFeWv/xu7bqB+9qRMvaBgXGTuI0vb6tE3PuOzMZHaPgP7mt37rOc6L72n2KKzAVVBHgk=
+   </data>
+  </layer>
+  <layer id="4" name="object" width="30" height="20">
+   <data encoding="base64" compression="zlib">
+-   eJxjYBgFo2AUjILBCRJH7R0Fo2AUDFEAAOd0ASQ=
++   eJxjYBgFQw2oMg60C0YBNqAAjBfFAYgbJaCdyoyj6WIUDH0ASsMqNE7HA51PR8HIAQAj2QGs
+   </data>
+  </layer>
+  <objectgroup id="6" name="trigger">
+@@ -81,12 +95,7 @@
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="6" name="ground" x="448.5" y="544" width="31" height="32">
+-   <properties>
+-    <property name="ground" value="yes"/>
+-   </properties>
+-  </object>
+-  <object id="7" name="ground" x="513" y="510.5" width="31" height="32">
++  <object id="7" name="ground" x="480" y="511.5" width="31" height="32">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+@@ -131,7 +140,7 @@
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="17" name="ground" x="800.5" y="384.5" width="63" height="31.5">
++  <object id="17" name="ground" x="800.5" y="384.5" width="31" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+@@ -146,59 +155,74 @@
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="20" name="ground" x="383.5" y="352.25" width="32.5" height="31.5">
++  <object id="21" name="ground" x="192" y="128.25" width="128" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="21" name="ground" x="192" y="128.25" width="128" height="31.5">
++  <object id="22" name="ground" x="224.5" y="159.75" width="160" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="22" name="ground" x="224.5" y="159.75" width="160" height="31.5">
++  <object id="24" name="ground" x="704" y="288.25" width="96.1667" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="23" name="ground" x="448.5" y="224.25" width="63" height="31.5">
++  <object id="25" name="ground" x="608.5" y="128.25" width="287.5" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="24" name="ground" x="577" y="288.25" width="94.5" height="31.5">
++  <object id="26" name="ground" x="639.5" y="96.75" width="224" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="25" name="ground" x="608.5" y="128.25" width="287.5" height="31.5">
++  <object id="27" name="ground" x="736" y="64.75" width="127.5" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="26" name="ground" x="639.5" y="96.75" width="224" height="31.5">
++  <object id="31" name="ground" x="864.5" y="351.75" width="31" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="27" name="ground" x="736" y="64.75" width="127.5" height="31.5">
++  <object id="33" name="ground" x="481.318" y="224.25" width="190.545" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="28" name="ground" x="736.5" y="287.25" width="96" height="31.5">
++  <object id="34" name="ground" x="480.5" y="95.25" width="31" height="31.5">
+    <properties>
+     <property name="ground" value="yes"/>
+    </properties>
+   </object>
+-  <object id="29" name="ground" x="854" y="288.25" width="41.5" height="31.5">
++  <object id="35" name="water" x="419.167" y="577.5" width="155" height="63.3333">
+    <properties>
+-    <property name="ground" value="yes"/>
++    <property name="water" value="yes"/>
++   </properties>
++  </object>
++  <object id="38" type="crystal" x="35" y="254.167" width="85" height="30">
++   <properties>
++    <property name="crystal" value="yes"/>
++   </properties>
++  </object>
++  <object id="39" name="crystal" x="0" y="445.833" width="55.8333" height="30.8333">
++   <properties>
++    <property name="crystal" value="yes"/>
++   </properties>
++  </object>
++  <object id="41" name="crystal" x="802.5" y="467.5" width="58.3333" height="41.6667">
++   <properties>
++    <property name="crystal" value="yes"/>
+    </properties>
+   </object>
+-  <object id="30" name="ladder" x="832.5" y="287" width="21.5" height="97.5">
++  <object id="42" name="crystal" x="606.667" y="103.333" width="30.8333" height="21.6667">
+    <properties>
+-    <property name="ladder" value="yes"/>
++    <property name="crystal" value="yes"/>
+    </properties>
+   </object>
+  </objectgroup>
+Index: object.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/object.py b/object.py
+new file mode 100644
+--- /dev/null	(date 1711125934696)
++++ b/object.py	(date 1711125934696)
+@@ -0,0 +1,24 @@
++from os.path import join
++
++import pygame
++
++
++def load_image(image_name, width, height, scale):
++    path = join("asset", "img", "weapon")
++    image = pygame.image.load(join(path, image_name)).convert_alpha()
++    sprites = []
++    surface = pygame.Surface((width, height), pygame.SRCALPHA)
++    # surface = pygame.Surface((width, height)).convert_alpha()
++    surface.blit(image, (0, 0), (0, 0, width, height))
++    img = pygame.transform.scale(surface, (width * scale, height * scale))
++    for i in range(0, 11):
++        sprites.append(pygame.transform.rotate(img, i * 30))
++    return sprites
++
++class Rock(pygame.sprite.Sprite):
++    GRAVITY = 0.5
++    ANIMATION_DELAY = 5
++
++    def __init__(self):
++        super().__init__()
++        self.sprite

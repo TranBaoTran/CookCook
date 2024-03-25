@@ -24,7 +24,7 @@ score_text = f.render('Score :', True, (255, 255, 255))
 time_text = f.render('Time :', True, (255, 255, 255))
 number_of_star = 1
 restart_img = pygame.image.load("asset/img/restart/restart_btn.png")
-
+char_dead = False
 
 class Button:
     def __init__(self, x, y, image):
@@ -143,6 +143,7 @@ def handle_move(player, over):
 
     for obj in to_check:
         if obj and obj["name"] != "ground":
+            player.animation_count=0
             over = True
 
     return over
@@ -150,6 +151,7 @@ def handle_move(player, over):
 
 def main():
     global game_over
+    global char_dead
     run = True
     # s = slime.Slime(0, 0, "Red_Slime", 0.7)
     player = character.Player(200, 100, 30, 50, 0.5)
@@ -168,11 +170,17 @@ def main():
                 if event.key == pygame.K_SPACE and player.jump_count < 2:
                     player.jump()
         if game_over:
-            if restartGame(win, time):
-                game_over = False
-                player.reset(200, 100, 30, 50, 0.5)
-                time.reset()
-            pygame.display.flip()
+            if player.die() == 2:
+                char_dead = True
+            if char_dead:
+                if restartGame(win, time):
+                    game_over = False
+                    player.reset(200, 100, 30, 50, 0.5)
+                    time.reset()
+                    char_dead = False
+                pygame.display.flip()
+            else:
+                redrawWindow(win, player, time, offset_x)
         else:
             player.loop(globalvariable.FPS)
             time.update()

@@ -118,8 +118,7 @@ class Player(pygame.sprite.Sprite):
         self.sprite = sprites[sprite_index]
         self.animation_count += 1
         self.update()
-        print(sprite_index)
-        return True if sprite_index == 2 else False
+        return sprite_index
 
     def update(self):
         self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))

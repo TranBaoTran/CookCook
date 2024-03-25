@@ -61,7 +61,7 @@
  </layer>
  <layer id="1" name="background" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlMEKwjAMhuPcTbBefACFMg9TmXqYD+PVi+9/t2EphtJmzaai4g8f2xjtl7VdAP55ViaOgpgqx16Fd6ceF7JyVI5Fpq8Bfa0NOUpiw57Pjl3mPC3V6/3HzHG/mnB/cZ0/YU1uRCq1Y8nI3X8p+O0HYkiwpi105+tbE/vfX5n9Gxy+X2n74pisoetNlpDCe+mYGtFp4NEXbWRO3rvLAM255ftmA++c7vE6I7zDRLzeXYBuLbhTwgjeFJK/pfmsML4a6PWkculxcu8dPvQLWQ==
+   eJztlMEKwjAMhuPcTbBefACFMg9TmXqYD+PVi+9/N2EphtJm7TZEhj98bGO0X9Z2AfhnqiyQgllmjn0q7249LmKHVMgm0ddAfq0NO0rmIJ7vyClxnpbrdf5r4ri5xt9fWudfWJMXE0uNbAWp+6+Fvv3CDAnVdITufE2R0L83t5y/4HD9Krcvjskeut5kGS2yl46pkZwGPn3RBuaUvbv0yDm3ct+s513zPV1XjHOYgNe5C8hbC+nUMIo3huZveT6rjK8Geh2xPHqc0vsGVoQLWQ==
   </data>
  </layer>
  <layer id="5" name="midground" width="30" height="20">
@@ -190,7 +190,7 @@
     <property name="ground" value="yes"/>
    </properties>
   </object>
-  <object id="31" name="ground" x="864.5" y="351.75" width="31" height="31.5">
+  <object id="31" name="ground" x="896.833" y="320.083" width="31" height="31.5">
    <properties>
     <property name="ground" value="yes"/>
    </properties>

@@ -13,7 +13,7 @@ win = pygame.display.set_mode((globalvariable.SCREEN_WIDTH, globalvariable.SCREE
                               pygame.RESIZABLE | pygame.DOUBLEBUF)
 pygame.display.set_caption("SlimeGame")
 map_path = "map01.tmx"
-bg_img = pygame.image.load("asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/2 Background/Day/1.png")
+bg_img = pygame.image.load("asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/orig.png")
 tiled_map = pytmx.load_pygame(map_path)
 game_over = False
 bg = pygame.transform.scale(pygame.image.load("asset/img/restart/Background.png"),

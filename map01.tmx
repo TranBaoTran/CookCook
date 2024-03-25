@@ -210,22 +210,22 @@
     <property name="water" value="yes"/>
    </properties>
   </object>
-  <object id="38" type="crystal" x="35" y="254.167" width="85" height="30">
+  <object id="38" type="crystal" x="35" y="254.167" width="87" height="30">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>
   </object>
-  <object id="39" name="crystal" x="0" y="445.833" width="55.8333" height="30.8333">
+  <object id="39" name="crystal" x="0" y="445.833" width="51.8333" height="30.8333">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>
   </object>
-  <object id="41" name="crystal" x="802.5" y="467.5" width="58.3333" height="41.6667">
+  <object id="41" name="crystal" x="809.5" y="467.5" width="47.3333" height="41.6667">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>
   </object>
-  <object id="42" name="crystal" x="606.667" y="103.333" width="30.8333" height="21.6667">
+  <object id="42" name="crystal" x="613.667" y="103.333" width="23.8333" height="21.6667">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>

@@ -293,6 +293,7 @@ def main():
     timer.GameTime.initialize_font()
     time = timer.GameTime(10, 10)
     getGround()
+    getBossGround()
     while run:
         clock.tick(globalvariable.FPS)
         for event in pygame.event.get():
@@ -317,15 +318,15 @@ def main():
                     if random.random() > 0.8:
                         if obj["name"] == "saw":
                             saws.add(object.Saw(obj["rect"].x, obj["rect"].y + obj["rect"].height, 24, 12, 4 / 3))
-            if event.type == small_bullet_run:
-                small_bullets.add(object.SmallBullet(random.uniform(ground_boss.rect.x - 50, ground_boss.rect.x + 50), random.uniform(ground_boss.rect.y - 50, ground_boss.rect.y + 50), 15,9, 1))
+            # if event.type == small_bullet_run:
+            #     small_bullets.add(object.SmallBullet(random.uniform(ground_boss.rect.x - 50, ground_boss.rect.x + 50), random.uniform(ground_boss.rect.y - 50, ground_boss.rect.y + 50), 15,9, 1))
 
         if time.seconds == 5 and time.count == 0 and time.minutes == 0:
             boss1 = "text"
         elif time.seconds == 10 and time.count == 0 and time.minutes == 0:
             boss1 = "incoming"
             ground_boss.set_sprite_name("Battle_turtle_walk")
-            getBossGround()
+
         elif time.seconds == 40 and time.count == 0 and time.minutes == 0:
             for obj in boss_blocks:
                 if obj["name"] == "hit_button":

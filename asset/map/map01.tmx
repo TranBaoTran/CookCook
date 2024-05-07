@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="76">
- <properties>
-  <property name="boss" value="yes"/>
- </properties>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="44">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="96" columns="12">
   <image source="asset/img/craftpix-net-362692-free-green-zone-tileset-pixel-art/Tileset.png" width="384" height="256"/>
  </tileset>
@@ -64,12 +61,12 @@
  </layer>
  <layer id="1" name="background" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlMsKwjAQRUftTrBu/ACFmC58UHVRP8at//8JJvQODiGdJrYIFi8c+kpyJ49eor/G0swxB4vMvk/l263Hy7N1WMc60a+m/FpreBSgEs93xylxnAb1sv81sd9UFe6vX+dfWJODYyNI3X9Nfu4X8GlNR2rP1xiK/XtT0/kLHpxXubk4RDtqs8kATTJLh9ToPUt656KJjCmz2wbknFu5bybwXeHeX5eAc5vbMQbvZSanroX01ChBEZkz18BwH82/wXiyfYgVvnvQ5c3fZf8uPXo8pe8LKl0OAw==
+   eJztlMEKwjAMhuPcTbBefACFMg9TmXqYD+PVi+9/N2EphtJm7TZEhj98bGO0X9Z2AfhnqiyQgllmjn0q7249LmKHVMgm0ddAfq0NO0rmIJ7vyClxnpbrdf5r4ri5xt9fWudfWJMXE0uNbAWp+6+Fvv3CDAnVdITufE2R0L83t5y/4HD9Krcvjskeut5kGS2yl46pkZwGPn3RBuaUvbv0yDm3ct+s513zPV1XjHOYgNe5C8hbC+nUMIo3huZveT6rjK8Geh2xPHqc0vsGVoQLWQ==
   </data>
  </layer>
  <layer id="5" name="midground" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt02sLgjAUxvH5Ncr6ctUsokxSu1+xErp8Zv+CL/fCubGCfODHQNg5BzkToo2NBJAYat6bVr4d3bn/JRMHPTqeEF346KHvNaszsjuW0W6Oq1NamuUXM8McIRaIHPVdIkaCFKsGNXTf+xobbLHDHoead0328ogTzrjgalCrnEO1j4HiW4Yb7nggN+irmydeeOODgcPeqqj+T5t6KQAeLhbX
+   eJzt09cKwjAUxvEIXtd716X1BXwitSriwr0HLnA8s/9AxCgtJNZxoR/8SCnpOaehFeKfV6QEDwXL56rKt2M796+k8oEe8YgQCSSRQjryXJ3ia8cKlbJava9O8d7UUEcDTbQ+1LeNDrroof9EDdv/fYAhRhhjgqnhs2G+yxnmWGCJVYhacg6/77Hkc2+NDbbYYW/ZK2q4z1FrRpE54IgTzshb9pZ1Eog93M8h+9BPFxS/8wnq64jbOwnVzwnY56prV5PRZjSNyf7rHlfcn4G+Xq9N6vmdl3ynnEbmAo7KG5I=
   </data>
  </layer>
  <layer id="4" name="object" width="30" height="20">
@@ -98,7 +95,7 @@
     <property name="ground" value="yes"/>
    </properties>
   </object>
-  <object id="5" name="ground" x="352.5" y="576.75" width="63.1667" height="63">
+  <object id="5" name="ground" x="352.5" y="576.75" width="63.5" height="63">
    <properties>
     <property name="ground" value="yes"/>
    </properties>
@@ -119,6 +116,11 @@
    </properties>
   </object>
   <object id="11" name="ground" x="640" y="416" width="95.5" height="31.5">
+   <properties>
+    <property name="ground" value="yes"/>
+   </properties>
+  </object>
+  <object id="12" name="ground" x="608" y="592" width="31" height="48">
    <properties>
     <property name="ground" value="yes"/>
    </properties>
@@ -203,151 +205,29 @@
     <property name="ground" value="yes"/>
    </properties>
   </object>
-  <object id="35" name="water" x="420.834" y="606.833" width="155" height="34">
+  <object id="35" name="water" x="419.167" y="577.5" width="155" height="63.3333">
    <properties>
     <property name="water" value="yes"/>
    </properties>
   </object>
-  <object id="38" type="crystal" x="36.5" y="258.5" width="40.25" height="28.4167">
+  <object id="38" type="crystal" x="35" y="254.167" width="87" height="30">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>
   </object>
-  <object id="39" name="crystal" x="0" y="449.833" width="51.8333" height="26.8333">
+  <object id="39" name="crystal" x="0" y="445.833" width="51.8333" height="30.8333">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>
   </object>
-  <object id="41" name="crystal" x="809.5" y="481" width="44.3333" height="28.1667">
+  <object id="41" name="crystal" x="809.5" y="467.5" width="47.3333" height="41.6667">
    <properties>
     <property name="crystal" value="yes"/>
    </properties>
   </object>
-  <object id="42" name="crystal" x="612.667" y="110" width="25.8333" height="17.6667">
+  <object id="42" name="crystal" x="613.667" y="103.333" width="23.8333" height="21.6667">
    <properties>
     <property name="crystal" value="yes"/>
-   </properties>
-  </object>
-  <object id="44" type="crystal" x="101.333" y="275.833" width="21.3333" height="11">
-   <properties>
-    <property name="crystal" value="yes"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="10" name="groundboss">
-  <object id="49" name="bossground" x="-120.75" y="479.667" width="248.833" height="33.6667">
-   <properties>
-    <property name="bossground" value="yes"/>
-   </properties>
-  </object>
-  <object id="51" name="bossground" x="127.583" y="512.667" width="32.8337" height="31.6667">
-   <properties>
-    <property name="bossground" value="yes"/>
-   </properties>
-  </object>
-  <object id="52" name="bossground" x="160.25" y="544.333" width="191.834" height="33.3333">
-   <properties>
-    <property name="bossground" value="yes"/>
-   </properties>
-  </object>
-  <object id="53" name="bossground" x="352.25" y="577" width="63.167" height="32">
-   <properties>
-    <property name="bossground" value="yes"/>
-   </properties>
-  </object>
-  <object id="57" name="saw" x="480.063" y="496.063" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="58" name="saw" x="608" y="431.5" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="59" name="saw" x="736.5" y="463" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="60" name="saw" x="737" y="272" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="61" name="saw" x="800" y="368.667" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="62" name="saw" x="703" y="400" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="63" name="saw" x="320" y="303.667" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="64" name="saw" x="479.667" y="80.3333" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="65" name="saw" x="320.667" y="144" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="66" name="saw" x="286.667" y="113" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="67" name="saw" x="672.667" y="79.6667" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="68" name="saw" x="863.333" y="113" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="69" name="saw" x="352.333" y="561.333" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="70" name="saw" x="896" y="464" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="71" name="saw" x="161" y="529" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="72" name="saw" x="95.6667" y="464" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="73" name="saw" x="158.667" y="273" width="32" height="16">
-   <properties>
-    <property name="saw" value="yes"/>
-   </properties>
-  </object>
-  <object id="74" name="hit_button" x="480.152" y="496.239" width="32" height="17.82">
-   <properties>
-    <property name="hit_button" value="yes"/>
-   </properties>
-  </object>
-  <object id="75" name="hit_button" x="480.667" y="209.09" width="32" height="17.82">
-   <properties>
-    <property name="hit_button" value="yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -227,8 +227,9 @@
   </object>
   <object id="42" name="crystal" x="613.667" y="103.333" width="23.8333" height="21.6667">
    <properties>
-    <property name="crystal" value="yes"/>
+    <property name="crystal" value="yes"/> <!-- maybe yes -->
    </properties>
   </object>
  </objectgroup>
+
 </map>

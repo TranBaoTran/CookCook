@@ -151,3 +151,6 @@ class Slime(pygame.sprite.Sprite):
                 self.isJump = False
                 self.jumpCount = 10
                 self.jump_frame = 0
+
+#    def move(self):
+#        count = 0

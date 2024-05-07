@@ -43,3 +43,6 @@ class GameTime:
     def draw(self, screen):
         if self.timer_surface:
             screen.blit(self.timer_surface, (self.x, self.y))
+
+#    def time_down(self):
+#        pass

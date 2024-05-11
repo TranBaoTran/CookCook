@@ -19,6 +19,67 @@ def get_sprite_sheet(dir1, width, height, scale):
     return sprites
 
 
+explode_image = pygame.transform.scale(pygame.image.load("asset/img/weapon/exploded.png"), (30, 30))
+img_explode = pygame.Surface((explode_image.get_width(), explode_image.get_height()), pygame.SRCALPHA)
+img_explode.blit(explode_image, (0, 0))
+
+
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height, scale, images):
+        super().__init__()
+        self.rect = pygame.Rect(x, y, width * scale, height * scale)
+        self.index = 0
+        self.release = False
+        self.images = images
+        self.index = 0
+        self.img_explode = img_explode
+        self.exploded = 0
+        self.hit = False
+        self.time_remained = 0
+
+    def draw(self, screen):
+        screen.blit(self.sprite, self.rect)
+
+    def move_towards_player(self, player):
+        dirvect = pygame.math.Vector2(player.rect.x + player.rect.width / 3 - self.rect.x,
+                                      player.rect.y + player.rect.height / 3 - self.rect.y)
+        if self.time_remained > globalvariable.SMALL_BULLET_TIMEOUT:
+            self.release = True
+            self.sprite = self.img_explode
+            self.time_remained = 0
+        if not self.release:
+            if globalvariable.BULLET_VEL >= dirvect.length():
+                self.hit = True
+                self.sprite = self.img_explode
+                self.time_remained = 0
+            else:
+                dirvect.normalize()
+                dirvect.scale_to_length(globalvariable.BULLET_VEL)
+                self.rect.move_ip(dirvect)
+                self.sprite = self.images[self.index]
+        self.time_remained += 1
+
+    def move_towards_player2(self, player):
+        if self.rect.x > player.rect.x:
+            self.index = 0
+        else:
+            self.index = 1
+        dirvect = pygame.math.Vector2(player.rect.x + player.rect.width / 3 - self.rect.x,
+                                      player.rect.y + player.rect.height / 3 - self.rect.y)
+        if not self.hit:
+            if globalvariable.BULLET_VEL >= dirvect.length():
+                self.hit = True
+                self.sprite = self.img_explode
+                self.time_remained = 0
+            else:
+                dirvect.normalize()
+                dirvect.scale_to_length(globalvariable.BIG_BULLET_VEL)
+                self.rect.move_ip(dirvect)
+                self.sprite = self.images[self.index]
+        self.time_remained += 1
+
+
+
 class SmallBullet(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, scale):
         super().__init__()
@@ -35,22 +96,37 @@ class SmallBullet(pygame.sprite.Sprite):
         self.images.append(img_flipped)
         self.rect = pygame.Rect(x, y, width * scale, height * scale)
         self.index = 0
+        self.release = False
 
     def draw(self, screen):
         screen.blit(self.images[self.index], self.rect)
+
+    def move(self, dx, dy):
+        self.rect.x += dx
+        self.rect.y += dy
 
     def move_towards_player(self, player, over):
         if self.rect.x > player.rect.x:
             self.index = 0
         else:
             self.index = 1
-        dirvect = pygame.math.Vector2(player.rect.x + player.rect.width/2 - self.rect.x, player.rect.y + player.rect.height/2 - self.rect.y)
+        dirvect = pygame.math.Vector2(player.rect.x + player.rect.width / 2 - self.rect.x,
+                                      player.rect.y + player.rect.height / 2 - self.rect.y)
+        if dirvect.length() <= 20:
+            self.release = True
+        print(f"{dirvect.length()}     {self.release}")
         if globalvariable.BULLET_VEL >= dirvect.length():
             over = True
         else:
-            dirvect.normalize()
-            dirvect.scale_to_length(globalvariable.BULLET_VEL)
-            self.rect.move_ip(dirvect)
+            if self.release:
+                if self.index == 1:
+                    self.move(globalvariable.BULLET_VEL, 0)
+                else:
+                    self.move(-globalvariable.BULLET_VEL, 0)
+            else:
+                dirvect.normalize()
+                dirvect.scale_to_length(globalvariable.BULLET_VEL)
+                self.rect.move_ip(dirvect)
         return over
 
 

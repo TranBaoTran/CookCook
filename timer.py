@@ -25,6 +25,20 @@ class GameTime:
         self.minutes = 0
         self.count = 0
 
+    def compare(self, time):
+        if not time:
+            return False
+        if self.seconds == time[0] and self.count == time[1] and self.minutes == time[2]:
+            return True
+        return False
+
+    def add(self, sec):
+        sum = self.seconds + sec
+        if sum > 59:
+            return sum - 60, self.count, self.minutes + 1
+        else:
+            return sum, self.count, self.minutes
+
     def update(self):
         self.count += 1
         if self.count == globalvariable.FPS:

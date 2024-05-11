@@ -150,8 +150,8 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))
 
-    def draw(self, win, offset_x):
-        win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y))
+    def draw(self, win):
+        win.blit(self.sprite, (self.rect.x, self.rect.y))
 
 
 class GroundBoss(pygame.sprite.Sprite):

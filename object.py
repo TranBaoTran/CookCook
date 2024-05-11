@@ -79,57 +79,6 @@ class Bullet(pygame.sprite.Sprite):
         self.time_remained += 1
 
 
-
-class SmallBullet(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height, scale):
-        super().__init__()
-        self.images = []
-        image = pygame.transform.scale(pygame.image.load("asset/img/boss/Battle turtle/Bullet1.png"), (width, height))
-        # self.img = pygame.Surface((image.get_width(), image.get_height()), pygame.SRCALPHA)
-        # self.img.blit(image, (0, 0), (0, 0, image.get_width(), image.get_height()))
-        image_flipped = pygame.transform.flip(image, True, False)
-        img = pygame.Surface((image.get_width(), image.get_height()), pygame.SRCALPHA)
-        img_flipped = pygame.Surface((image_flipped.get_width(), image.get_height()), pygame.SRCALPHA)
-        img.blit(image, (0, 0))
-        img_flipped.blit(image_flipped, (0, 0))
-        self.images.append(img)
-        self.images.append(img_flipped)
-        self.rect = pygame.Rect(x, y, width * scale, height * scale)
-        self.index = 0
-        self.release = False
-
-    def draw(self, screen):
-        screen.blit(self.images[self.index], self.rect)
-
-    def move(self, dx, dy):
-        self.rect.x += dx
-        self.rect.y += dy
-
-    def move_towards_player(self, player, over):
-        if self.rect.x > player.rect.x:
-            self.index = 0
-        else:
-            self.index = 1
-        dirvect = pygame.math.Vector2(player.rect.x + player.rect.width / 2 - self.rect.x,
-                                      player.rect.y + player.rect.height / 2 - self.rect.y)
-        if dirvect.length() <= 20:
-            self.release = True
-        print(f"{dirvect.length()}     {self.release}")
-        if globalvariable.BULLET_VEL >= dirvect.length():
-            over = True
-        else:
-            if self.release:
-                if self.index == 1:
-                    self.move(globalvariable.BULLET_VEL, 0)
-                else:
-                    self.move(-globalvariable.BULLET_VEL, 0)
-            else:
-                dirvect.normalize()
-                dirvect.scale_to_length(globalvariable.BULLET_VEL)
-                self.rect.move_ip(dirvect)
-        return over
-
-
 class Rock(pygame.sprite.Sprite):
     GRAVITY = 0.5
     image = pygame.transform.scale(pygame.image.load("asset/img/weapon/rock.png"), (50, 50))

@@ -138,3 +138,76 @@ class Lightning:
         screen.blit(self.SPRITES[(self.animation_count //
                                   self.ANIMATION_DELAY) % len(self.SPRITES)], self.rect)
         self.animation_count += 1
+
+class Laser(pygame.sprite.Sprite):
+    def __init__(self, x, y, direction, side):
+        super().__init__()
+        border_thick = 8;
+        self.border = pygame.Surface((1500 - border_thick * 2, 20 - border_thick * 2))
+        self.border.fill((255, 255, 255))
+        self.image = pygame.Surface((2000, 20))
+        self.image.fill((47, 205, 255))
+        self.image.blit(self.border, (border_thick, border_thick))
+        pygame.Surface.blit(self.image, self.border, (border_thick, border_thick), special_flags=pygame.BLEND_ADD)
+        self.rect = self.image.get_rect(center=(x, y))
+        self.direction = direction
+        self.speed = 10
+        self.x = x
+        self.y = y
+        self.side = side
+
+    def update(self):
+        self.rect.x += self.speed * self.direction[0]
+        self.rect.y += self.speed * self.direction[1]
+
+# class warning_laser(pygame.sprite.Sprite):
+#     def __init__(self, x, y, left):
+#         super().__init__()
+#         self.show = 0
+#         self.image = pygame.image.load("asset/icons/warning.png")
+#         self.rect = self.image.get_rect(center=(x, y))
+#         if left:
+#             self.x = 30
+#         else:
+#             self.x = globalvariable.SCREEN_WIDTH - 80
+#         self.y = y - 25
+#
+#     def updating(self):
+#         self.rect.x = self.x
+#         self.rect.y = self.y
+
+def get_sheet(dir1, width, height, scale):
+    path = join("asset", "img", "icons", dir1)
+    sprite_sheet = pygame.image.load(path).convert_alpha()
+    sprites = []
+    for i in range(sprite_sheet.get_width() // width):
+        surface = pygame.Surface((width, height), pygame.SRCALPHA)
+        rect = pygame.Rect(i * width, 0, width, height)
+        surface.blit(sprite_sheet, (0, 0), rect)
+        img = pygame.transform.scale(surface, (width * scale, height * scale))
+        sprites.append(img)
+    return sprites
+
+
+class warning_laser:
+    ANIMATION_DELAY = 10
+
+    def __init__(self, x, y, width, height, scale):
+        super().__init__()
+        self.scale = scale
+        self.rect = pygame.Rect(x, y, width * self.scale, height * self.scale)
+        self.SPRITES = get_sheet("warning_ani.png", width, height, self.scale)
+        self.animation_count = 0
+
+    def set_pos(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
+
+    def draw(self, screen):
+        screen.blit(self.SPRITES[(self.animation_count //
+                                  self.ANIMATION_DELAY) % len(self.SPRITES)], self.rect)
+        self.animation_count += 1
+
+    def setScale(self, scale):
+        self.scale = scale
+

@@ -1,6 +1,7 @@
 import random
 
 import pygame
+import time
 
 import globalvariable
 import timer
@@ -25,6 +26,7 @@ score_text = f.render('Score :', True, (255, 255, 255))
 time_text = f.render('Time :', True, (255, 255, 255))
 number_of_star = 3
 restart_img = pygame.image.load("asset/img/restart/restart_btn.png")
+alert_icon = pygame.image.load("asset/img/icons/warning.png")
 char_dead = False
 
 red_warning = f.render('Warning! Boss is coming!', True, (255, 0, 0))
@@ -32,6 +34,7 @@ white_warning = f.render('Warning! Boss is coming!', True, (247, 226, 30))
 
 event = 0
 boss1 = "wait"
+wlaser = "chotto"
 rock_slide = pygame.USEREVENT + event
 saw_up = pygame.USEREVENT + event + 1
 small_bullet_run = pygame.USEREVENT + event + 2
@@ -39,6 +42,8 @@ small_bullet_run = pygame.USEREVENT + event + 2
 saws = pygame.sprite.Group()
 hit_buttons = pygame.sprite.Group()
 small_bullets = pygame.sprite.Group()
+laser_sprites = pygame.sprite.Group()
+warning_lasers = pygame.sprite.Group()
 
 class Button:
     def __init__(self, x, y, image):
@@ -59,7 +64,6 @@ class Button:
             self.clicked = False
         screen.blit(self.image, self.rect)
         return action
-
 
 class WarningText:
     ANIMATION_DELAY = 10
@@ -140,6 +144,8 @@ ground_boss = character.GroundBoss(-144, 200, 144, 144, 2)
 # saw = object.Saw(0, 0, 24, 12, 4 / 3)
 # hit_button = object.HitButton(0,0,148,81,0.22)
 light = object.Lightning(0, 0, 130, 660, 0.8)
+warn_laser = object.warning_laser(0, 0, 50, 50, 1)
+
 
 
 def redrawWindow(screen, player, time, offset_x, rocks):
@@ -160,6 +166,8 @@ def redrawWindow(screen, player, time, offset_x, rocks):
     drawAllMap(screen)
     if boss1 == "text":
         wt.draw(win)
+        # warn_laser.set_pos(0, 0)
+        # warn_laser.draw(win)
     elif boss1 == "incoming":
         ground_boss.move_in(globalvariable.PLAYER_VEL)
         ground_boss.loop(globalvariable.FPS)
@@ -190,13 +198,57 @@ def redrawWindow(screen, player, time, offset_x, rocks):
                 hit_button.kill()
             ground_boss.set_sprite_name("Battle_turtle_idle")
 
+    # if wlaser == "warning":
+    #     warn_laser.set_pos(0, 0)
+    #     warn_laser.draw(win)
+    # elif wlaser == "fire":
+
+    for laser in laser_sprites.sprites():
+        win.blit(laser.image, laser.rect)
+
     for rock in rocks:
         rock.draw(win)
 
     for small_bullet in small_bullets:
         small_bullet.draw(win)
 
+    # for laser in laser_sprites.sprites():
+    #     win.blit(laser.image, laser.rect)
+
+
     pygame.display.flip()
+
+def getCurrentTime():
+    return time.time()
+
+def create_laser():
+    if random.randint(0, 500) < 5:  # Một số ngẫu nhiên để quyết định xem có tạo laze mới không
+        x = random.randint(0, globalvariable.SCREEN_WIDTH)
+        y = random.randint(0, globalvariable.SCREEN_HEIGHT)
+
+        if x % 2 == 0:
+            # Phải sang trái
+            direction = (-1, 0)
+            laser = object.Laser(globalvariable.SCREEN_WIDTH, y, direction, False)
+        else:
+            # Trái sang phải
+            direction = (1, 0)
+            laser = object.Laser(0, y, direction, True)
+
+        laser_sprites.add(laser)
+
+    laser_sprites.update()
+
+# def create_warning_laser(x, y, left):
+#     count = 0
+#     while count < 6:
+#         if wn.show % 2 == 1:
+#             wn.image = pygame.image.load("asset/icons/not_showing.png")
+#         warning_lasers.add(wn)
+#         wn.show += 1
+#         count += 1
+#     wn = object.warning_laser(x, y, left)
+#     warning_lasers.add(wn)
 
 
 def collide(player, dx):
@@ -283,6 +335,8 @@ def main():
     global event
     global boss1
     global hit_button_count
+
+    current_time = getCurrentTime()
     run = True
     # s = slime.Slime(0, 0, "Red_Slime", 0.7)
     player = character.Player(200, 100, 28, 50, 0.5)
@@ -331,6 +385,19 @@ def main():
             for obj in boss_blocks:
                 if obj["name"] == "hit_button":
                     hit_buttons.add(object.HitButton(obj["rect"].x, obj["rect"].y + obj["rect"].height, 148,81,0.22))
+
+        # if random.randint(0, 500) < 5:  # Một số ngẫu nhiên để quyết định xem có tạo laze mới không
+        #     x = random.randint(0, globalvariable.SCREEN_WIDTH)
+        #     y = random.randint(0, globalvariable.SCREEN_HEIGHT)
+        #     current_time = getCurrentTime()
+        #     if getCurrentTime() - current_time <= 3:
+        #         wlaser = "warning"
+        #     else:
+        #         wlaser = "fire"
+        #         laser = create_laser(x, y)
+        #         laser_sprites.add(laser)
+        # laser_sprites.update()
+        create_laser()
 
         for rock in rocks:
             if rock.rect.y < globalvariable.SCREEN_HEIGHT:

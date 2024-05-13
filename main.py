@@ -1,6 +1,6 @@
 import random
-
 import pygame
+from pygame import mixer
 
 import globalvariable
 import timer
@@ -24,7 +24,6 @@ score_text = f.render('Score :', True, (255, 255, 255))
 time_text = f.render('Time :', True, (255, 255, 255))
 number_of_star = 0
 restart_img = pygame.image.load("asset/img/restart/restart_btn.png")
-
 
 red_warning = f.render('Warning! Boss is coming!', True, (255, 0, 0))
 white_warning = f.render('Warning! Boss is coming!', True, (247, 226, 30))
@@ -54,6 +53,20 @@ saws = pygame.sprite.Group()
 hit_buttons = pygame.sprite.Group()
 small_bullets = pygame.sprite.Group()
 big_bullets = pygame.sprite.Group()
+
+pygame.mixer.pre_init(44100, -16, 2, 512)
+mixer.init()
+
+jump_fx = pygame.mixer.Sound("asset/audio/jump.wav")
+jump_fx.set_volume(0.5)
+die_fx = pygame.mixer.Sound("asset/audio/die.mp3")
+die_fx.set_volume(0.5)
+click_fx = pygame.mixer.Sound("asset/audio/click.mp3")
+click_fx.set_volume(0.5)
+warn_fx = pygame.mixer.Sound("asset/audio/warn.wav")
+warn_fx.set_volume(0.5)
+crunch_fx = pygame.mixer.Sound("asset/audio/crunch.wav")
+crunch_fx.set_volume(1)
 
 
 class Button:
@@ -162,7 +175,6 @@ def redrawWindow(screen, player, time):
     global game_over
     global char_dead
     drawMap(screen)
-
     time.draw(screen)
 
     for hit_button in hit_buttons.sprites():
@@ -202,13 +214,13 @@ def redrawWindow(screen, player, time):
                     globalvariable.TIME[3] = time.add(10)
                     globalvariable.TIME[4] = time.add(20)
 
-                if boss1 == "wave2":
+                elif boss1 == "wave2":
                     ground_boss.set_sprite_name("Battle_turtle_death")
                     boss1 = "death"
                     ground_boss.animation_count = 0
 
         elif boss1 == "death":
-            if ground_boss.animation_count > globalvariable.FPS:
+            if ground_boss.animation_count > globalvariable.FPS / 2:
                 game_over = True
                 char_dead = True
 
@@ -289,6 +301,7 @@ def handle_move(player, over):
         if obj and obj["name"] != "ground":
             if obj["name"] == "boss":
                 ground_boss.set_sprite_name("Battle_turtle_attack2")
+                crunch_fx.play()
             print(obj["name"])
             player.animation_count = 0
             over = True
@@ -333,11 +346,13 @@ def main():
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP and player.jump_count < 2:
+                    jump_fx.play()
                     player.jump()
                 if event.key == pygame.K_z:
                     for hit_button in hit_buttons:
                         if pygame.sprite.collide_rect(hit_button,
                                                       player) and hit_button.clickable and hit_button.state == 0:
+                            click_fx.play()
                             hit_button.state = 1
                             hit_button_count += 1
             if event.type == rock_slide:
@@ -358,7 +373,9 @@ def main():
 
         if time.compare(globalvariable.TIME[0]):
             boss1 = "text"
+            warn_fx.play(-1, 0, 0)
         elif time.compare(globalvariable.TIME[1]):
+            warn_fx.stop()
             boss1 = "incoming"
             ground_boss.set_sprite_name("Battle_turtle_walk")
         elif time.compare(globalvariable.TIME[2]) or time.compare(globalvariable.TIME[4]):
@@ -377,9 +394,10 @@ def main():
             if rock.rect.y < globalvariable.SCREEN_HEIGHT:
                 if not game_over:
                     rock.fall(globalvariable.ROCK_VEL, globalvariable.FPS)
-                    if pygame.sprite.collide_rect(rock, player):
-                        player.animation_count = 0
-                        game_over = True
+                    if not globalvariable.CHEAT:
+                        if pygame.sprite.collide_rect(rock, player):
+                            player.animation_count = 0
+                            game_over = True
                 else:
                     rock.fall(1, globalvariable.FPS)
             else:
@@ -387,7 +405,7 @@ def main():
 
         for saw in saws.sprites():
             saw.move_up()
-            if not game_over:
+            if not game_over and not globalvariable.CHEAT:
                 if pygame.sprite.collide_rect(saw, player):
                     player.animation_count = 0
                     game_over = True
@@ -397,9 +415,10 @@ def main():
 
         for small_bullet in small_bullets.sprites():
             small_bullet.move_towards_player(player)
-            if small_bullet.hit and not game_over:
+            if small_bullet.hit and not game_over and not globalvariable.CHEAT:
                 game_over = True
                 player.animation_count = 0
+                pygame.time.set_timer(small_bullet_run, 0)
             if small_bullet.time_remained > globalvariable.FPS / 2 and (small_bullet.hit or small_bullet.release):
                 small_bullet.kill()
 
@@ -408,7 +427,8 @@ def main():
             if big_bullet.hit and not game_over:
                 game_over = True
                 player.animation_count = 0
-            if big_bullet.time_remained > globalvariable.FPS / 2 and big_bullet.hit:
+                pygame.time.set_timer(small_bullet_run, 0)
+            if big_bullet.time_remained > globalvariable.FPS / 2 and (big_bullet.hit or number_of_star == 2):
                 big_bullet.kill()
 
         # print(game_over)
@@ -425,14 +445,17 @@ def main():
                     small_bullet.sprite = small_bullet.img_explode
                     small_bullet.time_remained = 0
                 for big_bullet in big_bullets.sprites():
-                    big_bullet.hit = True
+                    big_bullet.release = True
                     big_bullet.sprite = big_bullet.img_explode
                     big_bullet.time_remained = 0
                 pygame.time.set_timer(small_bullet_run, 0)
+                object.explode_fx.play()
 
         if game_over:
             if player.die() == 2:
                 char_dead = True
+                delete_sprite_list(small_bullets)
+                delete_sprite_list(big_bullets)
             if char_dead:
                 if restartGame(win, time):
                     game_over = False
@@ -446,18 +469,16 @@ def main():
                     delete_sprite_list(rocks)
                     delete_sprite_list(saws)
                     delete_sprite_list(hit_buttons)
-                    delete_sprite_list(small_bullets)
-                    delete_sprite_list(big_bullets)
 
                     hit_button_count = 0
                     pygame.time.set_timer(rock_slide, 0)
                     pygame.time.set_timer(saw_up, 0)
-                    pygame.time.set_timer(small_bullet_run, 0)
 
                     boss1 = "wait"
                     remove_dict_by_name(blocks, "boss")
                 pygame.display.flip()
             else:
+                die_fx.play()
                 redrawWindow(win, player, time)
         else:
             player.loop(globalvariable.FPS)

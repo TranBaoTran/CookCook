@@ -2,8 +2,15 @@ from os.path import join
 
 import pygame
 import pygame.sprite
+from pygame import mixer
 
 import globalvariable
+
+pygame.mixer.pre_init(44100, -16, 2, 512)
+mixer.init()
+
+explode_fx = pygame.mixer.Sound("asset/audio/explode.aiff")
+explode_fx.set_volume(0.5)
 
 
 def get_sprite_sheet(dir1, width, height, scale):
@@ -44,11 +51,13 @@ class Bullet(pygame.sprite.Sprite):
         dirvect = pygame.math.Vector2(player.rect.x + player.rect.width / 3 - self.rect.x,
                                       player.rect.y + player.rect.height / 3 - self.rect.y)
         if self.time_remained > globalvariable.SMALL_BULLET_TIMEOUT:
+            explode_fx.play()
             self.release = True
             self.sprite = self.img_explode
             self.time_remained = 0
         if not self.release:
             if globalvariable.BULLET_VEL >= dirvect.length():
+                explode_fx.play()
                 self.hit = True
                 self.sprite = self.img_explode
                 self.time_remained = 0
@@ -66,8 +75,9 @@ class Bullet(pygame.sprite.Sprite):
             self.index = 1
         dirvect = pygame.math.Vector2(player.rect.x + player.rect.width / 3 - self.rect.x,
                                       player.rect.y + player.rect.height / 3 - self.rect.y)
-        if not self.hit:
+        if not self.release:
             if globalvariable.BULLET_VEL >= dirvect.length():
+                explode_fx.play()
                 self.hit = True
                 self.sprite = self.img_explode
                 self.time_remained = 0

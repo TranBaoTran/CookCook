@@ -190,8 +190,8 @@ def redrawWindow(screen, player, time, offset_x, rocks):
             pygame.time.set_timer(saw_up, globalvariable.SAW_TIMER)
             pygame.time.set_timer(small_bullet_run, globalvariable.SMALL_BULLET_TIMER)
             ground_boss.set_sprite_name("Battle_turtle_idle")
-            pygame.time.set_timer(laser_warning, 1500)
-            pygame.time.set_timer(laser_fire, 1500)
+            pygame.time.set_timer(laser_warning, 1700)
+            pygame.time.set_timer(laser_fire, 1700)
             blocks.append({"name": "boss", "rect": ground_boss.rect})
 
     elif boss1 == "alive" or boss1 == "hurting":

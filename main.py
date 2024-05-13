@@ -26,7 +26,6 @@ score_text = f.render('Score :', True, (255, 255, 255))
 time_text = f.render('Time :', True, (255, 255, 255))
 number_of_star = 3
 restart_img = pygame.image.load("asset/img/restart/restart_btn.png")
-alert_icon = pygame.image.load("asset/img/icons/warning.png")
 char_dead = False
 
 red_warning = f.render('Warning! Boss is coming!', True, (255, 0, 0))
@@ -34,16 +33,21 @@ white_warning = f.render('Warning! Boss is coming!', True, (247, 226, 30))
 
 event = 0
 boss1 = "wait"
-wlaser = "chotto"
+wlaser = False
+last_toggle = 0
 rock_slide = pygame.USEREVENT + event
 saw_up = pygame.USEREVENT + event + 1
 small_bullet_run = pygame.USEREVENT + event + 2
+laser_warning = pygame.USEREVENT + event + 3
+laser_fire = pygame.USEREVENT + event + 4
+laser_attack = pygame.USEREVENT + event + 5
 
 saws = pygame.sprite.Group()
 hit_buttons = pygame.sprite.Group()
 small_bullets = pygame.sprite.Group()
 laser_sprites = pygame.sprite.Group()
 warning_lasers = pygame.sprite.Group()
+warn_laser = []
 
 class Button:
     def __init__(self, x, y, image):
@@ -125,6 +129,7 @@ blocks = []
 boss_blocks = []
 hit_button_count = 0
 hurt_count = 0
+laser_blocks = []
 
 
 def getGround():
@@ -138,13 +143,17 @@ def getBossGround():
         rect = pygame.Rect(obj.x, obj.y, obj.width, obj.height)
         boss_blocks.append({"name": obj.name, "rect": rect})
 
+def getLasers():
+    for obj in tiled_map.get_layer_by_name("laser"):
+        rect = pygame.Rect(obj.x, obj.y, obj.width, obj.height)
+        laser_blocks.append({"name": obj.name, "rect": rect})
 
 ground_boss = character.GroundBoss(-144, 200, 144, 144, 2)
 
 # saw = object.Saw(0, 0, 24, 12, 4 / 3)
 # hit_button = object.HitButton(0,0,148,81,0.22)
 light = object.Lightning(0, 0, 130, 660, 0.8)
-warn_laser = object.warning_laser(0, 0, 50, 50, 1)
+
 
 
 
@@ -152,6 +161,8 @@ def redrawWindow(screen, player, time, offset_x, rocks):
     # screen.fill(SCREEN_COLOR)
     global boss1
     global hurt_count
+
+    global wlaser
     drawMap(screen)
 
     time.draw(screen)
@@ -166,8 +177,6 @@ def redrawWindow(screen, player, time, offset_x, rocks):
     drawAllMap(screen)
     if boss1 == "text":
         wt.draw(win)
-        # warn_laser.set_pos(0, 0)
-        # warn_laser.draw(win)
     elif boss1 == "incoming":
         ground_boss.move_in(globalvariable.PLAYER_VEL)
         ground_boss.loop(globalvariable.FPS)
@@ -181,6 +190,8 @@ def redrawWindow(screen, player, time, offset_x, rocks):
             pygame.time.set_timer(saw_up, globalvariable.SAW_TIMER)
             pygame.time.set_timer(small_bullet_run, globalvariable.SMALL_BULLET_TIMER)
             ground_boss.set_sprite_name("Battle_turtle_idle")
+            pygame.time.set_timer(laser_warning, 1500)
+            pygame.time.set_timer(laser_fire, 1500)
             blocks.append({"name": "boss", "rect": ground_boss.rect})
 
     elif boss1 == "alive" or boss1 == "hurting":
@@ -198,58 +209,18 @@ def redrawWindow(screen, player, time, offset_x, rocks):
                 hit_button.kill()
             ground_boss.set_sprite_name("Battle_turtle_idle")
 
-    # if wlaser == "warning":
-    #     warn_laser.set_pos(0, 0)
-    #     warn_laser.draw(win)
-    # elif wlaser == "fire":
-
-    for laser in laser_sprites.sprites():
-        win.blit(laser.image, laser.rect)
-
     for rock in rocks:
         rock.draw(win)
+
+    for warn in warn_laser:
+        warn.draw(win)
+    for laser in laser_sprites.sprites():
+        laser.draw(win)
 
     for small_bullet in small_bullets:
         small_bullet.draw(win)
 
-    # for laser in laser_sprites.sprites():
-    #     win.blit(laser.image, laser.rect)
-
-
     pygame.display.flip()
-
-def getCurrentTime():
-    return time.time()
-
-def create_laser():
-    if random.randint(0, 500) < 5:  # Một số ngẫu nhiên để quyết định xem có tạo laze mới không
-        x = random.randint(0, globalvariable.SCREEN_WIDTH)
-        y = random.randint(0, globalvariable.SCREEN_HEIGHT)
-
-        if x % 2 == 0:
-            # Phải sang trái
-            direction = (-1, 0)
-            laser = object.Laser(globalvariable.SCREEN_WIDTH, y, direction, False)
-        else:
-            # Trái sang phải
-            direction = (1, 0)
-            laser = object.Laser(0, y, direction, True)
-
-        laser_sprites.add(laser)
-
-    laser_sprites.update()
-
-# def create_warning_laser(x, y, left):
-#     count = 0
-#     while count < 6:
-#         if wn.show % 2 == 1:
-#             wn.image = pygame.image.load("asset/icons/not_showing.png")
-#         warning_lasers.add(wn)
-#         wn.show += 1
-#         count += 1
-#     wn = object.warning_laser(x, y, left)
-#     warning_lasers.add(wn)
-
 
 def collide(player, dx):
     player.move(dx, 0)
@@ -328,6 +299,9 @@ def remove_dict_by_name(list_of_dicts, name):
         if item.get('name') == name:
             list_of_dicts.remove(item)
 
+last_toggle_seconds = 10
+last_toggle_minutes = 0
+last_toggle_count = 0
 
 def main():
     global game_over
@@ -335,8 +309,14 @@ def main():
     global event
     global boss1
     global hit_button_count
+    global wlaser
 
-    current_time = getCurrentTime()
+    global last_toggle_seconds
+    global last_toggle_minutes
+    global last_toggle_count
+
+    # warn = object.warning_laser(30, 100, (1, 0), True)
+
     run = True
     # s = slime.Slime(0, 0, "Red_Slime", 0.7)
     player = character.Player(200, 100, 28, 50, 0.5)
@@ -348,6 +328,7 @@ def main():
     time = timer.GameTime(10, 10)
     getGround()
     getBossGround()
+    getLasers()
     while run:
         clock.tick(globalvariable.FPS)
         for event in pygame.event.get():
@@ -372,8 +353,26 @@ def main():
                     if random.random() > 0.8:
                         if obj["name"] == "saw":
                             saws.add(object.Saw(obj["rect"].x, obj["rect"].y + obj["rect"].height, 24, 12, 4 / 3))
+
             # if event.type == small_bullet_run:
             #     small_bullets.add(object.SmallBullet(random.uniform(ground_boss.rect.x - 50, ground_boss.rect.x + 50), random.uniform(ground_boss.rect.y - 50, ground_boss.rect.y + 50), 15,9, 1))
+
+            if event.type == laser_warning:
+                warn_laser.clear()
+                for obj in laser_blocks:
+                    if obj["name"] == "laser":
+                        if random.random() > 0.9:
+                            if random.randint(0, 500) % 2 == 0:
+                                warn_laser.append(object.warning_laser(obj["rect"].x, obj["rect"].y, 50, 50, 0.7, True))
+                            else:
+                                warn_laser.append(object.warning_laser(obj["rect"].x, obj["rect"].y, 50, 50, 0.7, False))
+
+            if event.type == laser_fire:
+                for sprite in laser_sprites.sprites():
+                    sprite.kill()
+                for warn in warn_laser:
+                    laser_sprites.add(object.Laser(warn.ox, warn.oy, (-1, 0), warn.side))
+
 
         if time.seconds == 5 and time.count == 0 and time.minutes == 0:
             boss1 = "text"
@@ -385,19 +384,6 @@ def main():
             for obj in boss_blocks:
                 if obj["name"] == "hit_button":
                     hit_buttons.add(object.HitButton(obj["rect"].x, obj["rect"].y + obj["rect"].height, 148,81,0.22))
-
-        # if random.randint(0, 500) < 5:  # Một số ngẫu nhiên để quyết định xem có tạo laze mới không
-        #     x = random.randint(0, globalvariable.SCREEN_WIDTH)
-        #     y = random.randint(0, globalvariable.SCREEN_HEIGHT)
-        #     current_time = getCurrentTime()
-        #     if getCurrentTime() - current_time <= 3:
-        #         wlaser = "warning"
-        #     else:
-        #         wlaser = "fire"
-        #         laser = create_laser(x, y)
-        #         laser_sprites.add(laser)
-        # laser_sprites.update()
-        create_laser()
 
         for rock in rocks:
             if rock.rect.y < globalvariable.SCREEN_HEIGHT:
@@ -417,6 +403,16 @@ def main():
             saw.move_up()
             if not game_over:
                 if pygame.sprite.collide_rect(saw, player):
+                    player.animation_count = 0
+                    game_over = True
+
+        for warn in warn_laser:
+            warn.set_pos()
+
+        for laser in laser_sprites.sprites():
+            laser.update()
+            if not game_over:
+                if pygame.sprite.collide_rect(laser, player):
                     player.animation_count = 0
                     game_over = True
 

@@ -6,15 +6,17 @@ ROCK_VEL = 6
 ROCK_TIMER = 5000
 SAW_TIMER = 6000
 SMALL_BULLET_TIMER = 2000
+LASER_TIMER = 1700
 SAW_DOWN = FPS * 4
 HURT_TIME = FPS * 4
 BULLET_VEL = 3
 BIG_BULLET_VEL = 1.5
 SMALL_BULLET_TIMEOUT = FPS * 4
-CHEAT = False
+CHEAT = True
 TIME = [(5, 0, 0),
         (10, 0, 0),
         (40, 0, 0),
+        (),
         (),
         ()
         ]

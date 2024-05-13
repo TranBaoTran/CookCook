@@ -173,3 +173,63 @@ class Lightning:
         screen.blit(self.SPRITES[(self.animation_count //
                                   self.ANIMATION_DELAY) % len(self.SPRITES)], self.rect)
         self.animation_count += 1
+
+
+class Laser(pygame.sprite.Sprite):
+    def __init__(self, x, y, direction, side):
+        super().__init__()
+        self.image = pygame.image.load("asset/img/icons/laser.png")
+        self.rect = self.image.get_rect(center=(x, y))
+        self.direction = direction
+        self.side = side
+        self.speed = 10
+        self.x = x
+        self.y = y
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+
+    def update(self):
+        self.rect.x += self.speed * self.direction[0]
+        self.rect.y += self.speed * self.direction[1]
+
+
+def get_sheet(dir1, width, height, scale):
+    path = join("asset", "img", "icons", dir1)
+    sprite_sheet = pygame.image.load(path).convert_alpha()
+    sprites = []
+    for i in range(sprite_sheet.get_width() // width):
+        surface = pygame.Surface((width, height), pygame.SRCALPHA)
+        rect = pygame.Rect(i * width, 0, width, height)
+        surface.blit(sprite_sheet, (0, 0), rect)
+        img = pygame.transform.scale(surface, (width * scale, height * scale))
+        sprites.append(img)
+    return sprites
+
+
+class WarningLaser:
+    ANIMATION_DELAY = 20
+
+    def __init__(self, x, y, width, height, scale, side):
+        super().__init__()
+        self.scale = scale
+        self.rect = pygame.Rect(x, y, width * self.scale, height * self.scale)
+        self.SPRITES = get_sheet("warning_ani.png", width, height, self.scale)
+        self.animation_count = 0
+        self.side = side
+        self.ox = x
+        self.oy = y
+        if side:
+            self.x = 30
+        else:
+            self.x = 880
+        self.y = y - 15
+
+    def set_pos(self):
+        self.rect.x = self.x
+        self.rect.y = self.y
+
+    def draw(self, screen):
+        screen.blit(self.SPRITES[(self.animation_count //
+                                  self.ANIMATION_DELAY) % len(self.SPRITES)], self.rect)
+        self.animation_count += 1

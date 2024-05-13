@@ -473,7 +473,7 @@ def main():
                     hit_button_count = 0
                     pygame.time.set_timer(rock_slide, 0)
                     pygame.time.set_timer(saw_up, 0)
-
+                    pygame.time.set_timer(small_bullet_run, 0)
                     boss1 = "wait"
                     remove_dict_by_name(blocks, "boss")
                 pygame.display.flip()

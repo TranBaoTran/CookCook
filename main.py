@@ -71,6 +71,8 @@ warn_fx = pygame.mixer.Sound("asset/audio/warn.wav")
 warn_fx.set_volume(0.5)
 crunch_fx = pygame.mixer.Sound("asset/audio/crunch.wav")
 crunch_fx.set_volume(1)
+boss_fx = pygame.mixer.Sound("asset/audio/boss.mp3")
+boss_fx.set_volume(0.5)
 
 
 class Button:
@@ -416,6 +418,7 @@ def main():
             warn_fx.play(-1, 0, 0)
         elif time.compare(globalvariable.TIME[1]):
             warn_fx.stop()
+            boss_fx.play(-1, 0, 0)
             boss1 = "incoming"
             ground_boss.set_sprite_name("Battle_turtle_walk")
         elif time.compare(globalvariable.TIME[2]) or time.compare(globalvariable.TIME[3]) or time.compare(globalvariable.TIME[5]):
@@ -514,6 +517,7 @@ def main():
                 char_dead = True
                 delete_sprite_list(small_bullets)
                 delete_sprite_list(big_bullets)
+                boss_fx.stop()
             if char_dead:
                 if restartGame(win, time):
                     game_over = False

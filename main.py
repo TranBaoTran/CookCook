@@ -73,6 +73,8 @@ crunch_fx = pygame.mixer.Sound("asset/audio/crunch.wav")
 crunch_fx.set_volume(1)
 boss_fx = pygame.mixer.Sound("asset/audio/boss.mp3")
 boss_fx.set_volume(0.5)
+clear_fx = pygame.mixer.Sound("asset/audio/stage_clear.wav")
+clear_fx.set_volume(0.5)
 
 
 class Button:
@@ -461,7 +463,7 @@ def main():
 
         for laser in laser_sprites.sprites():
             laser.update()
-            if not game_over:
+            if not game_over and not globalvariable.CHEAT:
                 if pygame.sprite.collide_rect(laser, player):
                     player.animation_count = 0
                     game_over = True
@@ -518,6 +520,8 @@ def main():
                 delete_sprite_list(small_bullets)
                 delete_sprite_list(big_bullets)
                 boss_fx.stop()
+                if number_of_star == 3:
+                    clear_fx.play()
             if char_dead:
                 if restartGame(win, time):
                     game_over = False
@@ -542,6 +546,7 @@ def main():
                     pygame.time.set_timer(laser_warning, 0)
                     boss1 = "wait"
                     remove_dict_by_name(blocks, "boss")
+                    clear_fx.stop()
                 pygame.display.flip()
             else:
                 die_fx.play()

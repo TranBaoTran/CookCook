@@ -69,7 +69,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y, width, height, scale):
         super().__init__()
-        self.SPRITES = load_sprite_sheets("character/Blue_Slime - Copy", 128, 128, scale, True)
+        self.SPRITES = load_sprite_sheets("character/Red_Slime - Copy", 128, 128, scale, True)
         self.reset(x, y, width, height, scale)
 
     def reset(self, x, y, width, height, scale):

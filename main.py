@@ -170,7 +170,7 @@ def main():
                 if event.key == pygame.K_SPACE and player.jump_count < 2:
                     player.jump()
         if game_over:
-            if player.die() == 2:
+            if player.die() == 3:
                 char_dead = True
             if char_dead:
                 if restartGame(win, time):

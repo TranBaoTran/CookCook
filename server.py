@@ -1,21 +1,33 @@
 import socket
 from _thread import *
 import sys
-import timer
 
-global server
-port = 5555
-server = '192.168.1.10'
+def start_server():
+    hostname = socket.gethostname()
+    ipv4_address = socket.gethostbyname(hostname)
+    print(f"Internal IPv4 Address for {hostname}: {ipv4_address}")
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server = ipv4_address
+    port = 5555
 
-try:
-    s.bind((server, port))
-except socket.error as e:
-    str(e)
 
-s.listen(2)
-print("Waiting for a connection, Server Started")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    try:
+        s.bind((server, port))
+    except socket.error as e:
+        str(e)
+
+    s.listen(2)
+    print("Waiting for a connection, Server Started")
+    currentPlayer = 0
+
+    while True:
+            conn, addr = s.accept()
+            print("Connected to:", addr)
+
+            start_new_thread(threaded_client, (conn, currentPlayer))
+            currentPlayer += 1
 
 def read_pos(str):
     str = str.split(",")
@@ -57,10 +69,6 @@ def threaded_client(conn, player):
 
 
 
-currentPlayer = 0
-while True:
-        conn, addr = s.accept()
-        print("Connected to:", addr)
 
-        start_new_thread(threaded_client, (conn, currentPlayer))
-        currentPlayer += 1
+if __name__ == "__main__":
+    start_server()

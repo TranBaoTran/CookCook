@@ -1,171 +1,214 @@
 import pygame
-import math
-from pygame.locals import *
+from pygame import font
 
-import slimesheet
+import globalvariable
+import slime
+import timer
+import pytmx
+import character
+from network import Network
 
-DEFAULT_SCREEN_WIDTH = 960
-DEFAULT_SCREEN_HEIGHT = 640
-SCREEN_WIDTH = DEFAULT_SCREEN_WIDTH
-SCREEN_HEIGHT = DEFAULT_SCREEN_HEIGHT
-FPS = 36
+pygame.init()
 SCREEN_COLOR = (255, 255, 255)
-CHARACTER_HEIGHT = 30
-BLOCK_HEIGHT = 50
-win = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("CookCook")
-last_update = pygame.time.get_ticks()
-ANIMATION_COOLDOWN = 500
+win = pygame.display.set_mode((globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT),
+                              pygame.RESIZABLE | pygame.DOUBLEBUF)
+pygame.display.set_caption("SlimeGame")
+map_path = "map01.tmx"
+bg_img = pygame.image.load("asset/img/craftpix-net-800370-free-nature-backgrounds-pixel-art/nature_5/orig.png")
+tiled_map = pytmx.load_pygame(map_path)
+game_over = False
 
-clientNumber = 0
+bg = pygame.transform.scale(pygame.image.load("asset/img/restart/Background.png"),
+                            (globalvariable.SCREEN_WIDTH, globalvariable.SCREEN_HEIGHT))
+star = pygame.transform.scale(pygame.image.load("asset/img/restart/star.png"), (50, 50))
+f = pygame.font.Font('Grand9k Pixel.ttf', 40)
+score_text = f.render('Score :', True, (255, 255, 255))
+time_text = f.render('Time :', True, (255, 255, 255))
+number_of_star = 1
+restart_img = pygame.image.load("asset/img/restart/restart_btn.png")
+char_dead = False
 
+class Button:
+    def __init__(self, x, y, image):
+        self.image = image
+        self.rect = image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.clicked = False
 
-class Player(pygame.sprite.Sprite):
-    STANDING_IMG = "asset/img/character.py/Blue_Slime/Idle.png"
-    WALKING_IMG = "asset/img/character.py/Blue_Slime/walk.png"
-    JUMPING_IMG = "asset/img/character.py/Blue_Slime/Jump.png"
-
-    def __init__(self, x, y, width, height, color):
-        pygame.sprite.Sprite.__init__(self)
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.color = color
-        self.rect = (x, y, width, height)
-        self.vel = 3
-        self.isJump = False
-        self.jumpCount = 10
-        self.left = False
-        self.right = False
-        self.walkCount = 0
-        self.stand_frame = 0
-        self.jump_frame = 0
-        # stand sprite
-        self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()
-        self.sprite_sheet_stand = slimesheet.SpriteSheet(self.sprite_sheet_stand_img)
-        self.animation_stand_list = []
-        # walk sprite
-        self.sprite_sheet_walk_img = pygame.image.load(self.WALKING_IMG).convert_alpha()
-        self.sprite_sheet_walk = slimesheet.SpriteSheet(self.sprite_sheet_walk_img)
-        self.animation_walk_left_list = []
-        self.animation_walk_right_list = []
-        # jump sprite
-        self.sprite_sheet_jump_img = pygame.image.load(self.JUMPING_IMG).convert_alpha()
-        self.sprite_sheet_jump = slimesheet.SpriteSheet(self.sprite_sheet_jump_img)
-        self.animation_jump_list = []
-        # number of normal sprites
-        self.animation_step = 8
-        self.animation_change_frame = math.ceil(FPS / self.animation_step)
-        # number of jump sprites
-        self.animation_jump_step = 13
-        self.animation_jump_change_frame = math.ceil(FPS / self.animation_jump_step)
-        self.loadImage()
-
-    def loadImage(self):
-        # stand
-        for x in range(self.animation_step):
-            self.animation_stand_list.append(self.sprite_sheet_stand.get_image(x, 128, 128, 1, (0, 0, 0)))
-        # walk
-        for x in range(self.animation_step):
-            self.animation_walk_right_list.append(self.sprite_sheet_walk.get_image(x, 128, 128, 1, (0, 0, 0)))
-            self.animation_walk_left_list.append(
-                pygame.transform.flip(self.sprite_sheet_walk.get_image(x, 128, 128, 1, (0, 0, 0)), True, False))
-        # jump
-        for x in range(self.animation_jump_step):
-            self.animation_jump_list.append(self.sprite_sheet_jump.get_image(x, 128, 128, 1, (0, 0, 0)))
-
-    def draw(self, win):
-        if self.walkCount + 1 >= FPS:
-            self.walkCount = 0
-
-        if self.stand_frame + 1 >= FPS:
-            self.stand_frame = 0
-
-        if self.isJump:
-            win.blit(self.animation_jump_list[self.jump_frame // self.animation_jump_change_frame], (self.x, self.y))
-            self.jump_frame += 1
-            self.stand_frame = 0
-        elif self.left:
-            win.blit(self.animation_walk_left_list[self.walkCount // self.animation_change_frame], (self.x, self.y))
-            self.walkCount += 1
-            self.stand_frame = 0
-        elif self.right:
-            win.blit(self.animation_walk_right_list[self.walkCount // self.animation_change_frame], (self.x, self.y))
-            self.walkCount += 1
-            self.stand_frame = 0
-        else:
-            win.blit(self.animation_stand_list[self.stand_frame // self.animation_change_frame], (self.x, self.y))
-            self.stand_frame += 1
-        pygame.draw.rect(win, self.color, self.rect)
-
-    def move(self):
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_LEFT] and self.x > self.vel:
-            self.x -= self.vel
-            self.left = True
-            self.right = False
-
-        elif keys[pygame.K_RIGHT] and self.x < SCREEN_WIDTH - self.width - self.vel:
-            self.x += self.vel
-            self.left = False
-            self.right = True
-
-        else:
-            self.right = False
-            self.left = False
-            self.walkCount = 0
-
-        if not self.isJump:
-            if keys[pygame.K_UP] and self.y > self.vel:
-                self.y -= self.vel
-                self.right = False
-                self.left = False
-                self.walkCount = 0
-
-            if keys[pygame.K_DOWN] and self.y < SCREEN_HEIGHT - self.height - self.vel:
-                self.y += self.vel
-
-            if keys[pygame.K_SPACE]:
-                self.isJump = True
-
-        else:
-            if self.jumpCount >= -10:
-                neg = 1
-                if self.jumpCount < 0:
-                    neg = -1
-                self.y -= (self.jumpCount ** 2) * 0.3 * neg
-                self.jumpCount -= 1
-            else:
-                self.isJump = False
-                self.jumpCount = 10
-                self.jump_frame = 0
-        self.rect = (self.x, self.y, self.width, self.height)
+    def draw(self, screen):
+        action = False
+        pos = pygame.mouse.get_pos()
+        if self.rect.collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1 and not self.clicked:
+                action = True
+                self.clicked = True
+        if pygame.mouse.get_pressed()[0] == 0:
+            self.clicked = False
+        screen.blit(self.image, self.rect)
+        return action
 
 
-def redrawWindow(win, player):
-    win.fill(SCREEN_COLOR)
-    player.draw(win)
-    pygame.display.update()
+restart_button = Button((globalvariable.SCREEN_WIDTH - restart_img.get_width()) / 2,
+                        globalvariable.SCREEN_HEIGHT / 2.5 + score_text.get_height() * 3, restart_img)
+
+
+def restartGame(screen, time):
+    screen.blit(bg, (0, 0))
+    screen.blit(score_text, (
+        (globalvariable.SCREEN_WIDTH - (score_text.get_width() + number_of_star * (star.get_width() + 50))) / 2,
+        globalvariable.SCREEN_HEIGHT / 2.5))
+    for i in range(1, number_of_star + 1):
+        screen.blit(star, ((globalvariable.SCREEN_WIDTH - (
+                score_text.get_width() + i * (star.get_width() + 50))) / 2 + score_text.get_width(),
+                           globalvariable.SCREEN_HEIGHT / 2.5 + score_text.get_height() / 8))
+    screen.blit(time_text, (
+        (globalvariable.SCREEN_WIDTH - (score_text.get_width() + number_of_star * (star.get_width() + 50))) / 2,
+        globalvariable.SCREEN_HEIGHT / 2.5 + score_text.get_height()))
+    timer_text = f.render(time.timer_text, True, (255, 255, 255))
+    screen.blit(timer_text, ((globalvariable.SCREEN_WIDTH - (
+            score_text.get_width() + number_of_star * (star.get_width() + 50))) / 2 + score_text.get_width(),
+                             globalvariable.SCREEN_HEIGHT / 2.5 + score_text.get_height() * 9 / 8))
+    return restart_button.draw(screen)
+
+
+def drawMap(screen):
+    screen.blit(bg_img, (0, 0))
+    for layer in tiled_map.visible_layers:
+        if isinstance(layer, pytmx.TiledTileLayer):
+            for x, y, gid in layer:
+                tile = tiled_map.get_tile_image_by_gid(gid)
+                if tile:
+                    screen.blit(tile, (x * tiled_map.tilewidth, y * tiled_map.tileheight))
+
+
+blocks = []
+
+
+def getGround():
+    for obj in tiled_map.get_layer_by_name("trigger"):
+        rect = pygame.Rect(obj.x, obj.y, obj.width, obj.height)
+        blocks.append({"name": obj.name, "rect": rect})
+
+
+def redrawWindow(screen, player,player2, time, offset_x):
+    # screen.fill(SCREEN_COLOR)
+    drawMap(screen)
+    player.draw(screen, offset_x)
+    player2.draw(screen, offset_x)
+    time.draw(screen)
+    pygame.display.flip()
+
+
+def collide(player, dx):
+    player.move(dx, 0)
+    player.update()
+    collided_object = None
+    for obj in blocks:
+        if player.rect.colliderect(obj["rect"]):
+            collided_object = obj
+
+    player.move(-dx, 0)
+    player.update()
+    return collided_object
+
+
+def handle_vertical_collision(player, dy):
+    collided_objects = []
+    for obj in blocks:
+        if player.rect.colliderect(obj["rect"]):
+            if dy > 0:
+                player.rect.bottom = obj["rect"].top
+                player.landed()
+            elif dy < 0:
+                player.rect.top = obj["rect"].bottom
+                player.hit_head()
+
+            collided_objects.append(obj)
+
+    return collided_objects
+
+
+def handle_move(player, over):
+    keys = pygame.key.get_pressed()
+
+    player.x_vel = 0
+    collide_left = collide(player, -globalvariable.PLAYER_VEL * 2)
+    collide_right = collide(player, globalvariable.PLAYER_VEL * 2)
+
+    if keys[pygame.K_LEFT] and not collide_left and player.rect.x > 0:
+        player.move_left(globalvariable.PLAYER_VEL)
+    if keys[pygame.K_RIGHT] and not collide_right and player.rect.right < globalvariable.SCREEN_WIDTH:
+        player.move_right(globalvariable.PLAYER_VEL)
+
+    vertical_collide = handle_vertical_collision(player, player.y_vel)
+    to_check = [collide_left, collide_right, *vertical_collide]
+
+    for obj in to_check:
+        if obj and obj["name"] != "ground":
+            player.animation_count=0
+            over = True
+
+    return over
 
 
 def main():
+    global game_over
+    global char_dead
     run = True
-    p = Player(50, 400, CHARACTER_HEIGHT, CHARACTER_HEIGHT, (0, 255, 0))
+    # s = slime.Slime(0, 0, "Red_Slime", 0.7)
+    n = Network()
+    p = n.getP()
+    # n.setServer(str)
+    # startPos = read_pos(n.getPos())
+    #
+    # player = character.Player(startPos[0], startPos[1], 30, 50, 0.5)
+    # player2 = character.Player(200, 100, 30, 50, 0.5)
+    offset_x = 0
     clock = pygame.time.Clock()
-
+    timer.GameTime.initialize_font()
+    time = timer.GameTime(10, 10)
+    getGround()
     while run:
-        clock.tick(FPS)
+        clock.tick(globalvariable.FPS)
+        p2 = n.send(p)
+        # p2Pos = read_pos(n.send(make_pos((player.rect.x, player.rect.y))))
+        # player2.rect.x = p2Pos[0]
+        # player2.rect.y = p2Pos[1]
+        # p2.loop(globalvariable.FPS)
+        # p2.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and p.jump_count < 2:
+                    p.jump()
+        if game_over:
+            if p.die() == 2:
+                char_dead = False
 
-        p.move()
-        redrawWindow(win, p)
+            if char_dead:
+                if restartGame(win, time):
+                    game_over = False
+                    p.reset(200, 100, 30, 50, 0.5)
+                    # p2Pos = read_pos(n.send(make_pos((player.rect.x, player.rect.y))))
+                    # player2.rect.x = p2Pos[0]
+                    # player2.rect.y = p2Pos[1]
+                    char_dead = False
+                pygame.display.flip()
+            else:
+                redrawWindow(win, p,p2, time, offset_x)
+        else:
+            p.loop(globalvariable.FPS)
+            time.update()
+            game_over = handle_move(p, game_over)
+            handle_vertical_collision(p2, p2.y_vel)
+            redrawWindow(win, p,p2, time, offset_x)
+        if p.rect.top > globalvariable.SCREEN_HEIGHT:
+            game_over = True
+    pygame.quit()
 
 
 if __name__ == '__main__':
-    pygame.init()
     main()

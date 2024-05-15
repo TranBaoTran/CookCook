@@ -44,9 +44,9 @@ class Slime(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.scale = scale
-        self.STANDING_IMG = "asset/img/character.py/" + name + "/Idle.png"
-        self.WALKING_IMG = "asset/img/character.py/" + name + "/walk.png"
-        self.JUMPING_IMG = "asset/img/character.py/" + name + "/Jump.png"
+        self.STANDING_IMG = "asset/img/character/" + name + "/idle.png"
+        self.WALKING_IMG = "asset/img/character/" + name + "/walk.png"
+        self.JUMPING_IMG = "asset/img/character/" + name + "/jump.png"
         # stand sprite
         self.sprite_sheet_stand_img = pygame.image.load(self.STANDING_IMG).convert_alpha()
         self.sprite_sheet_stand = SpriteSheet(self.sprite_sheet_stand_img)

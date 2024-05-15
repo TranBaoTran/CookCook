@@ -21,9 +21,9 @@ clientNumber = 0
 
 
 class Player(pygame.sprite.Sprite):
-    STANDING_IMG = "asset/img/character.py/Blue_Slime/Idle.png"
-    WALKING_IMG = "asset/img/character.py/Blue_Slime/walk.png"
-    JUMPING_IMG = "asset/img/character.py/Blue_Slime/Jump.png"
+    STANDING_IMG = "asset/img/character/Blue_Slime - Copy/idle.png"
+    WALKING_IMG = "asset/img/character/Blue_Slime - Copy/walk.png"
+    JUMPING_IMG = "asset/img/character/Blue_Slime - Copy/jump.png"
 
     def __init__(self, x, y, width, height, color):
         pygame.sprite.Sprite.__init__(self)

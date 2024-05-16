@@ -233,33 +233,3 @@ class WarningLaser:
         screen.blit(self.SPRITES[(self.animation_count //
                                   self.ANIMATION_DELAY) % len(self.SPRITES)], self.rect)
         self.animation_count += 1
-
-class bullet_test(pygame.sprite.Sprite):
-    def __init__(self, x, y, direction, side):
-
-        bigBullet_image = pygame.transform.scale(pygame.image.load("asset/img/boss/Battle turtle/Bullet1.png"),(45, 27))
-        bigBullet_image_flipped = pygame.transform.flip(bigBullet_image, True, False)
-        bigBullet_img = pygame.Surface((bigBullet_image.get_width(), bigBullet_image.get_height()), pygame.SRCALPHA)
-        bigBullet_img_flipped = pygame.Surface((bigBullet_image_flipped.get_width(), bigBullet_image_flipped.get_height()),pygame.SRCALPHA)
-
-        bigBullet_img.blit(bigBullet_image, (0, 0))
-        bigBullet_img_flipped.blit(bigBullet_image_flipped, (0, 0))
-
-        super().__init__()
-        if side:
-            self.image = bigBullet_img_flipped
-        else:
-            self.image = bigBullet_img
-        self.rect = self.image.get_rect(center=(x, y))
-        self.direction = direction
-        self.side = side
-        self.speed = 10
-        self.x = x
-        self.y = y
-
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
-
-    def update(self):
-        self.rect.x += self.speed * self.direction[0]
-        self.rect.y += self.speed * self.direction[1]

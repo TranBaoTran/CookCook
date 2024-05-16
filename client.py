@@ -24,6 +24,8 @@ bg = pygame.transform.scale(pygame.image.load("asset/img/restart/Background.png"
 star = pygame.transform.scale(pygame.image.load("asset/img/restart/star.png"), (50, 50))
 f = pygame.font.Font('Grand9k Pixel.ttf', 40)
 score_text = f.render('Score :', True, (255, 255, 255))
+win_text = f.render('You win', True, (255, 255, 255))
+lose_text = f.render('You lose', True, (255, 255, 255))
 time_text = f.render('Time :', True, (255, 255, 255))
 waiting_text = f.render('Waiting for other player...', True, (255, 255, 255))
 number_of_star = 0
@@ -53,6 +55,7 @@ warn_laser = []
 
 game_over = False
 char_dead = False
+isWin = False
 
 
 class Button:
@@ -102,20 +105,21 @@ restart_text_height = globalvariable.SCREEN_HEIGHT / 2.5
 
 def restartGame(screen, time):
     screen.blit(bg, (0, 0))
-    screen.blit(score_text, (restart_text_width, restart_text_height))
-    for i in range(0, number_of_star):
-        screen.blit(star, (restart_text_content_width + i * 50,
-                           restart_text_height + score_text.get_height() / 8))
+    if isWin:
+        screen.blit(win_text, ((globalvariable.SCREEN_WIDTH - win_text.get_width())/2, restart_text_height))
+    else:
+        screen.blit(lose_text, ((globalvariable.SCREEN_WIDTH - lose_text.get_width())/2, restart_text_height))
     screen.blit(time_text, (restart_text_width, restart_text_height + score_text.get_height()))
     timer_text = f.render(time.die_time, True, (255, 255, 255))
     screen.blit(timer_text,
-                (restart_text_content_width, restart_text_height + score_text.get_height() * 9 / 8))
+                (restart_text_content_width, restart_text_height + win_text.get_height() * 9 / 8))
     return restart_button.draw(screen)
 
 
 def waitingGame(screen):
     screen.blit(bg, (0, 0))
-    screen.blit(waiting_text, ((globalvariable.SCREEN_WIDTH - waiting_text.get_width())/2, (globalvariable.SCREEN_HEIGHT - waiting_text.get_height())/2))
+    screen.blit(waiting_text, ((globalvariable.SCREEN_WIDTH - waiting_text.get_width()) / 2,
+                               (globalvariable.SCREEN_HEIGHT - waiting_text.get_height()) / 2))
 
 
 def drawMap(screen):
@@ -231,6 +235,7 @@ def main():
     global number_of_star
     global game_over
     global char_dead
+    global isWin
     run = True
     click_restart = False
 
@@ -272,17 +277,24 @@ def main():
             player.reset(200, 100, 30, 50, 0.5)
             time.reset()
             p1data.respawn = False
+            isWin = False
 
         player2.rect.x = p2data.x
         player2.rect.y = p2data.y
         player2.sprite_sheet_name = p2data.sprite_name
 
         if p2data.connected == 2:
-            time.update()
+            pass
         else:
             waitingGame(win)
             pygame.display.flip()
             continue
+
+        if game_over and not char_dead and p2data.die:
+            isWin = True
+        print(f"{char_dead} {p2data.die} ")
+
+        time.update()
 
         if game_over:
             if click_restart:

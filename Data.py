@@ -9,6 +9,8 @@ class PlayerData:
         self.respawn = False
         self.name = name
         self.connected = -1
+        self.saws = []
+        self.isSawSend = False
 
     def setVal(self, x, y, sprite_name, die):
         self.x = x

@@ -11,6 +11,7 @@ class PlayerData:
         self.connected = -1
         self.saws = []
         self.isSawSend = False
+        self.isSawReceive = False
 
     def setVal(self, x, y, sprite_name, die):
         self.x = x

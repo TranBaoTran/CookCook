@@ -106,9 +106,9 @@ restart_text_height = globalvariable.SCREEN_HEIGHT / 2.5
 def restartGame(screen, time):
     screen.blit(bg, (0, 0))
     if isWin:
-        screen.blit(win_text, ((globalvariable.SCREEN_WIDTH - win_text.get_width())/2, restart_text_height))
+        screen.blit(win_text, ((globalvariable.SCREEN_WIDTH - win_text.get_width()) / 2, restart_text_height))
     else:
-        screen.blit(lose_text, ((globalvariable.SCREEN_WIDTH - lose_text.get_width())/2, restart_text_height))
+        screen.blit(lose_text, ((globalvariable.SCREEN_WIDTH - lose_text.get_width()) / 2, restart_text_height))
     screen.blit(time_text, (restart_text_width, restart_text_height + score_text.get_height()))
     timer_text = f.render(time.die_time, True, (255, 255, 255))
     screen.blit(timer_text,
@@ -158,11 +158,15 @@ light = object.Lightning(0, 0, 130, 660, 0.8)
 
 def redrawWindow(screen, player, player2, time):
     global hurt_count
+
     drawMap(screen)
     time.draw(screen)
 
     player.draw(screen)
     player2.draw(screen)
+
+    for saw in saws.sprites():
+        saw.draw(win)
 
     drawAllMap(screen)
 
@@ -278,6 +282,7 @@ def main():
             time.reset()
             p1data.respawn = False
             isWin = False
+            delete_sprite_list(saws)
 
         player2.rect.x = p2data.x
         player2.rect.y = p2data.y
@@ -292,7 +297,19 @@ def main():
 
         if game_over and not char_dead and p2data.die:
             isWin = True
-        print(f"{char_dead} {p2data.die} ")
+
+        if p2data.isSawSend and p2data.isSawReceive:
+            delete_sprite_list(saws)
+            for obj in p2data.saws:
+                saws.add(object.Saw(obj[0], obj[1] + obj[3], 24, 12, 4 / 3))
+            p1data.isSawReceive = False
+
+        for saw in saws.sprites():
+            saw.move_up()
+            if not game_over and not globalvariable.CHEAT:
+                if pygame.sprite.collide_rect(saw, player):
+                    player.animation_count = 0
+                    game_over = True
 
         time.update()
 

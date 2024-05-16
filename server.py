@@ -57,10 +57,11 @@ def AddSaw(sc):
         if random.random() > 0.8:
             saw_send.append(obj)
     saw_ready = True
+    print(1)
 
 
 def threaded_client(conn, player):
-    global currentPlayer
+    global currentPlayer, saw_ready
     conn.send(pickle.dumps(players[player]))
     while True:
         try:
@@ -72,6 +73,19 @@ def threaded_client(conn, player):
                 break
             else:
                 players[player].connected = currentPlayer
+                print(f"{players[0].isSawSend} {players[1].isSawSend}")
+
+                if saw_ready:
+                    players[0].saws.clear()
+                    players[1].saws.clear()
+                    players[0].isSawSend = True
+                    players[1].isSawSend = True
+                    for obj in saw_send:
+                        players[0].saws.append(obj)
+                        players[1].saws.append(obj)
+                    saw_ready = False
+                    players[0].isSawReceive = True
+                    players[1].isSawReceive = True
 
                 if players[0].die and players[1].die:
                     players[player].restart = True
@@ -79,7 +93,6 @@ def threaded_client(conn, player):
                     players[player].restart = False
 
                 reply = players[1 - player]  # Switch player
-                print(reply.connected)
                 conn.sendall(pickle.dumps(reply))
         except:
             break

@@ -349,7 +349,7 @@ def delete_sprite_list(sprite_group):
         sprite.kill()
 
 
-def main():
+def main(color):
     global game_over
     global char_dead
     global event
@@ -357,7 +357,7 @@ def main():
     global hit_button_count
     global number_of_star
     run = True
-    player = character.Player(200, 100, 28, 50, 0.5)
+    player = character.Player(color, 200, 100, 28, 50, 0.5)
     clock = pygame.time.Clock()
     timer.GameTime.initialize_font()
     time = timer.GameTime(10, 10)

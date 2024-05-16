@@ -67,10 +67,11 @@ class Player(pygame.sprite.Sprite):
     GRAVITY = 1
     ANIMATION_DELAY = 5
 
-    def __init__(self, x, y, width, height, scale):
+    def __init__(self, name, x, y, width, height, scale):
         super().__init__()
-        self.SPRITES = load_sprite_sheets("character/Red_Slime - Copy", 128, 128, scale, True)
+        self.SPRITES = load_sprite_sheets("character/"+name+"_Slime - Copy", 128, 128, scale, True)
         self.reset(x, y, width, height, scale)
+        self.sprite_sheet_name = "idle_left"
 
     def reset(self, x, y, width, height, scale):
         self.rect = pygame.Rect(x, y, 47 * scale, 33 * scale)
@@ -129,8 +130,12 @@ class Player(pygame.sprite.Sprite):
             sprite_sheet = "fall"
         elif self.x_vel != 0:
             sprite_sheet = "walk"
-        sprite_sheet_name = sprite_sheet + "_" + self.direction
-        sprites = self.SPRITES[sprite_sheet_name]
+        self.sprite_sheet_name = sprite_sheet + "_" + self.direction
+        self.update_state()
+
+
+    def update_state(self):
+        sprites = self.SPRITES[self.sprite_sheet_name]
         sprite_index = (self.animation_count //
                         self.ANIMATION_DELAY) % len(sprites)
         self.sprite = sprites[sprite_index]

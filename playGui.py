@@ -217,7 +217,7 @@ def red_choose(name, player, color_player_1 = None):
                     break
 
                 if play_button.clicked(mouse_position, event):
-                    main.main()
+                    main.main("Red")
                     break
 
 
@@ -279,7 +279,7 @@ def blue_choose(name, player ,color_player_1 = None):
                     break
 
                 if play_button.clicked(mouse_position, event):
-                    main.main()
+                    main.main("Blue")
                     break
 
 
@@ -341,7 +341,7 @@ def green_choose(name, player, color_player_1 = None):
                     break
 
                 if play_button.clicked(mouse_position, event):
-                    main.main()
+                    main.main("Green")
                     break
 
 

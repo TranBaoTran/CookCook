@@ -357,7 +357,7 @@ def main():
     global hit_button_count
     global number_of_star
     run = True
-    player = character.Player(200, 100, 28, 50, 0.5)
+    player = character.Player("Red",200, 100, 28, 50, 0.5)
     clock = pygame.time.Clock()
     timer.GameTime.initialize_font()
     time = timer.GameTime(10, 10)

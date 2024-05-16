@@ -14,6 +14,7 @@ class GameTime:
         self.reset()
         self.timer_surface = None
         self.timer_text = f"{0:02d}:{0:02d}"
+        self.die_time = ""
 
     @classmethod
     def initialize_font(cls):
@@ -24,6 +25,7 @@ class GameTime:
         self.seconds = 0
         self.minutes = 0
         self.count = 0
+        self.die_time = ""
 
     def compare(self, time):
         if not time:

@@ -12,7 +12,7 @@ HURT_TIME = FPS * 4
 BULLET_VEL = 3
 BIG_BULLET_VEL = 1.5
 SMALL_BULLET_TIMEOUT = FPS * 4
-CHEAT = True
+CHEAT = False
 TIME = [(5, 0, 0),
         (10, 0, 0),
         (40, 0, 0),

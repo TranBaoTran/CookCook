@@ -411,9 +411,9 @@ def main():
                     sprite.kill()
                 for warn in warn_laser:
                     if warn.side:
-                        laser_sprites.add(object.Laser(warn.ox, warn.oy, (1, 0), warn.side))
+                        laser_sprites.add(object.bullet_test(warn.ox, warn.oy, (1, 0), warn.side))
                     else:
-                        laser_sprites.add(object.Laser(warn.ox, warn.oy, (-1, 0), warn.side))
+                        laser_sprites.add(object.bullet_test(warn.ox, warn.oy, (-1, 0), warn.side))
 
         if time.compare(globalvariable.TIME[0]):
             boss1 = "text"

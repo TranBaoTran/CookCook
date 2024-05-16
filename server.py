@@ -69,11 +69,11 @@ def AddWarnLaser(sc):
     global laser_warn_ready
     laser_send.clear()
     for obj in laser_blocks:
-        if random.random() > 0.9:
+        if random.random() > 0.8:
             if random.randint(0, 500) % 2 == 0:
                 laser_send.append((obj[0], obj[1], True))
             else:
-                laser_send.append((obj[0], obj[1], False))
+                laser_send.append((globalvariable.SCREEN_WIDTH - 10, obj[1], False))
     laser_warn_ready = True
 
 

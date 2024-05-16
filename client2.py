@@ -317,9 +317,9 @@ def main():
                 warn_laser.append(object.WarningLaser(obj[0], obj[1], 50, 50, 0.7, obj[2]))
             for warn in warn_laser:
                 if warn.side:
-                    laser_sprites.add(object.Laser(warn.ox, warn.oy, (1, 0), warn.side))
+                    laser_sprites.add(object.bullet_test(warn.ox, warn.oy, (1, 0), warn.side))
                 else:
-                    laser_sprites.add(object.Laser(warn.ox, warn.oy, (-1, 0), warn.side))
+                    laser_sprites.add(object.bullet_test(warn.ox, warn.oy, (-1, 0), warn.side))
             p1data.isLaserReceive = False
 
         for saw in saws.sprites():

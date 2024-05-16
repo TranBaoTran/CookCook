@@ -170,6 +170,12 @@ def redrawWindow(screen, player, player2, time):
 
     drawAllMap(screen)
 
+    for warn in warn_laser:
+        warn.draw(win)
+
+    for laser in laser_sprites.sprites():
+        laser.draw(win)
+
     pygame.display.flip()
 
 
@@ -304,10 +310,32 @@ def main():
                 saws.add(object.Saw(obj[0], obj[1] + obj[3], 24, 12, 4 / 3))
             p1data.isSawReceive = False
 
+        if p2data.isLaserSend and p2data.isLaserReceive:
+            warn_laser.clear()
+            delete_sprite_list(laser_sprites)
+            for obj in p2data.lasers:
+                warn_laser.append(object.WarningLaser(obj[0], obj[1], 50, 50, 0.7, obj[2]))
+            for warn in warn_laser:
+                if warn.side:
+                    laser_sprites.add(object.Laser(warn.ox, warn.oy, (1, 0), warn.side))
+                else:
+                    laser_sprites.add(object.Laser(warn.ox, warn.oy, (-1, 0), warn.side))
+            p1data.isLaserReceive = False
+
         for saw in saws.sprites():
             saw.move_up()
             if not game_over and not globalvariable.CHEAT:
                 if pygame.sprite.collide_rect(saw, player):
+                    player.animation_count = 0
+                    game_over = True
+
+        for warn in warn_laser:
+            warn.set_pos()
+
+        for laser in laser_sprites.sprites():
+            laser.update()
+            if not game_over and not globalvariable.CHEAT:
+                if pygame.sprite.collide_rect(laser, player):
                     player.animation_count = 0
                     game_over = True
 

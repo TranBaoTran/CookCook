@@ -12,6 +12,9 @@ class PlayerData:
         self.saws = []
         self.isSawSend = False
         self.isSawReceive = False
+        self.lasers = []
+        self.isLaserSend = False
+        self.isLaserReceive = False
 
     def setVal(self, x, y, sprite_name, die):
         self.x = x

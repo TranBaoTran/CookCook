@@ -1,6 +1,4 @@
-import random
 import pygame
-from pygame import mixer
 
 from Data import PlayerData
 from network import Network
@@ -30,9 +28,6 @@ time_text = f.render('Time :', True, (255, 255, 255))
 waiting_text = f.render('Waiting for other player...', True, (255, 255, 255))
 number_of_star = 0
 restart_img = pygame.image.load("asset/img/restart/restart_btn.png")
-
-red_warning = f.render('Warning! Boss is coming!', True, (255, 0, 0))
-white_warning = f.render('Warning! Boss is coming!', True, (247, 226, 30))
 
 smallBullet_image = pygame.transform.scale(pygame.image.load("asset/img/boss/Battle turtle/SmallBullet.png"), (9, 9))
 img_smallBullet = pygame.Surface((smallBullet_image.get_width(), smallBullet_image.get_height()), pygame.SRCALPHA)
@@ -78,22 +73,6 @@ class Button:
         screen.blit(self.image, self.rect)
         return action
 
-
-class WarningText:
-    ANIMATION_DELAY = 10
-
-    def __init__(self, text):
-        self.x = (globalvariable.SCREEN_WIDTH - red_warning.get_width()) / 2
-        self.y = 50
-        self.text = text
-        self.animation_count = 0
-
-    def draw(self, screen):
-        screen.blit(self.text[(self.animation_count // self.ANIMATION_DELAY) % 2], (self.x, self.y))
-        self.animation_count += 1
-
-
-wt = WarningText((red_warning, white_warning))
 
 restart_button = Button((globalvariable.SCREEN_WIDTH - restart_img.get_width()) / 2,
                         globalvariable.SCREEN_HEIGHT / 2.5 + score_text.get_height() * 3, restart_img)
@@ -149,11 +128,6 @@ def getGround():
     for obj in tiled_map.get_layer_by_name("trigger"):
         rect = pygame.Rect(obj.x, obj.y, obj.width, obj.height)
         blocks.append({"name": obj.name, "rect": rect})
-
-
-ground_boss = character.GroundBoss(-144, 200, 144, 144, 2)
-
-light = object.Lightning(0, 0, 130, 660, 0.8)
 
 
 def redrawWindow(screen, player, player2, time):
